@@ -27,9 +27,14 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
     }
 
-    @GetMapping("/create")
-    public ResponseEntity<String> getData() {
-        // User newUser = userService.createUser(user.getEmail(), user.getUserName(), user.getPassword());
+    // @GetMapping("/test-request")
+    // public ResponseEntity<String> getUserById(Long id) {
+    //     // User newUser = userService.createUser(user.getEmail(), user.getUserName(), user.getPassword());
+    //     return ResponseEntity.status(HttpStatus.CREATED).body("someData");
+    // }
+
+    @GetMapping("/test-request")
+    public ResponseEntity<String> getUserById() {
         return ResponseEntity.status(HttpStatus.CREATED).body("someData");
     }
 }
