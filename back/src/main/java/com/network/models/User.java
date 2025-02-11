@@ -1,4 +1,4 @@
-package com.example.demo.models;
+package com.network.models;
 
 import lombok.*;
 import lombok.experimental.Accessors;

@@ -1,4 +1,4 @@
-package com.example.demo.payload.request;
+package com.network.payload.request;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;

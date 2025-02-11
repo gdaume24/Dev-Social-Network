@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.network.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.models.User;
-import com.example.demo.payload.request.LoginRequest;
-import com.example.demo.payload.request.SignupRequest;
-import com.example.demo.payload.response.MessageResponse;
-import com.example.demo.payload.response.UserResponse;
-import com.example.demo.repository.UserRepository;
-import com.example.demo.service.UserService;
+import com.network.models.User;
+import com.network.payload.request.LoginRequest;
+import com.network.payload.request.SignupRequest;
+import com.network.payload.response.MessageResponse;
+import com.network.payload.response.UserResponse;
+import com.network.repository.UserRepository;
+import com.network.service.UserService;
 
 import jakarta.validation.Valid;
 

@@ -1,4 +1,4 @@
-package com.example.demo.configuration.error;
+package com.network.configuration.error;
 
 import java.util.Map;
 

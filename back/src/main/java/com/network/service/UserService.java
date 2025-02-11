@@ -1,10 +1,10 @@
-package com.example.demo.service;
+package com.network.service;
 
 
 import org.springframework.stereotype.Service;
 
-import com.example.demo.models.User;
-import com.example.demo.repository.UserRepository;
+import com.network.models.User;
+import com.network.repository.UserRepository;
 
 @Service
 public class UserService {
