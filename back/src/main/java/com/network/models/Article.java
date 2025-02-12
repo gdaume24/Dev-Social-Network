@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.Set;
 
 import io.micrometer.common.lang.NonNull;
 import jakarta.persistence.Entity;
@@ -60,5 +61,5 @@ public class Article {
             inverseJoinColumns = @JoinColumn(name = "theme_id") // Clé étrangère vers Theme
     )
     @Builder.Default
-    private List<Theme> themes = new HashSet<>();
+    private Set<Theme> themes = new HashSet<>();
 }

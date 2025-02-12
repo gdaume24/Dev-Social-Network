@@ -42,7 +42,7 @@ public class UserService {
     public User updateById(Long id, User user) {
 
         user.setId(id);
-        
+
         return userRepository.save(user);
     }
 
@@ -58,7 +58,7 @@ public class UserService {
     public User unsubscribeFromTheme(Long userId, Long themeId) {
 
         User user = userRepository.findById(userId).orElseThrow();
-        user.setThemes(user.getThemes().stream().filter(userTheme -> !userTheme.getId().equals(themeId)).collect(Collectors.toList()));
+        user.setThemes(user.getThemes().stream().filter(userTheme -> !userTheme.getId().equals(themeId)).collect(Collectors.toSet()));
 
         return userRepository.save(user);
     }
