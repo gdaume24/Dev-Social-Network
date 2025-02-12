@@ -2,6 +2,7 @@ package com.network.models;
 
 import java.sql.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import io.micrometer.common.lang.NonNull;
@@ -59,5 +60,5 @@ public class Article {
             inverseJoinColumns = @JoinColumn(name = "theme_id") // Clé étrangère vers Theme
     )
     @Builder.Default
-    private Set<Theme> themes = new HashSet<>();
+    private List<Theme> themes = new HashSet<>();
 }
