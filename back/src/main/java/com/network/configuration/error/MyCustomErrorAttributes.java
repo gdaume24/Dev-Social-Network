@@ -7,6 +7,9 @@ import org.springframework.boot.web.servlet.error.DefaultErrorAttributes;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.WebRequest;
 
+/**
+ * ??
+ */
 @Component
 public class MyCustomErrorAttributes extends DefaultErrorAttributes {
 

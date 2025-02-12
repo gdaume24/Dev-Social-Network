@@ -6,7 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import io.github.cdimascio.dotenv.Dotenv;
 
 /**
- *  Comment
+ * Starter.
+ * Load .env variables in the .back directory related to the terminal path. 
+ * Because application.properties rely on .env variables.
  */
 @SpringBootApplication
 public class Application {

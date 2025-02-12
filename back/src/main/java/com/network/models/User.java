@@ -11,6 +11,9 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Size;
 
+/**
+ * User model
+ */
 @Entity
 @Data
 @Builder

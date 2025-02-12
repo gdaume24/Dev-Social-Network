@@ -6,6 +6,9 @@ import org.springframework.stereotype.Service;
 import com.network.models.User;
 import com.network.repository.UserRepository;
 
+/**
+ * Service for user operations
+ */
 @Service
 public class UserService {
 

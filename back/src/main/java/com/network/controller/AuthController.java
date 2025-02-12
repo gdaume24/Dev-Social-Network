@@ -19,7 +19,9 @@ import com.network.service.UserService;
 
 import jakarta.validation.Valid;
 
-
+/**
+ * Controller for authentication
+ */
 @RestController
 @CrossOrigin
 @RequestMapping("/auth")
@@ -35,6 +37,12 @@ public class AuthController {
         this.userService = userService;
     }
 
+    /**
+     * Authenticates a user based on the provided login request.
+     *
+     * @param loginRequest the login request containing the user's email and password
+     * @return a ResponseEntity containing the authenticated user's details
+     */
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
@@ -46,6 +54,12 @@ public class AuthController {
             .setUserName(user.getUserName()));
         }
 
+    /**
+     * Registers a new user based on the provided signup request.
+     *
+     * @param signUpRequest the signup request containing the user's email, username, and password
+     * @return a ResponseEntity containing the newly created user's details or an error message if the email is already taken
+     */
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
         if (userRepository.existsByEmail(signUpRequest.getEmail())) {
