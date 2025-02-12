@@ -1,6 +1,7 @@
 package com.network.models;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,6 +14,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -43,7 +46,8 @@ public class Article {
     private String content;
 
   @NonNull
-  private Date date;
+  @Temporal(TemporalType.TIMESTAMP)
+  private Timestamp date;
 
   @ManyToOne
   @JoinColumn(name = "user_id", nullable = false)

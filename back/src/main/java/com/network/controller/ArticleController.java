@@ -13,7 +13,6 @@ import com.network.dto.ArticleDto;
 import com.network.dto.CommentDto;
 import com.network.mapper.ArticleMapper;
 import com.network.models.Article;
-import com.network.payload.request.SignupRequest;
 import com.network.service.ArticleService;
 
 import jakarta.validation.Valid;
@@ -31,11 +30,9 @@ public class ArticleController {
         this.articleService = articleService;
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<?> createArticle(@Valid @RequestBody ArticleDto articleDto) {
-
-        Article article = articleService.createArticle(this.articleMapper.toEntity(articleDto));
-
+    @PostMapping("/create/{userId}")
+    public ResponseEntity<?> createArticle(@PathVariable String userId, @Valid @RequestBody ArticleDto articleDto) {
+        Article article = articleService.createArticle(Long.parseLong(userId), this.articleMapper.toEntity(articleDto));
         return ResponseEntity.ok().body(this.articleMapper.toDto(article));
     }
 

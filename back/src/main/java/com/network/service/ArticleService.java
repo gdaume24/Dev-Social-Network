@@ -1,5 +1,8 @@
 package com.network.service;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+
 import org.springframework.stereotype.Service;
 
 import com.network.dto.CommentDto;
@@ -23,7 +26,12 @@ public class ArticleService {
         this.commentRepository = commentRepository;
     }    
 
-    public Article createArticle(Article article) {
+    public Article createArticle(Long userId, Article article) {
+        // Ajouter id, date et author
+        User user = userRepository.findById(userId).orElseThrow();
+        article.setUser(user);
+        article.setAuthor(user.getUserName());
+        article.setDate(new Timestamp(System.currentTimeMillis()));
         Article savedArticle = articleRepository.save(article);
         return savedArticle;
     }
@@ -40,6 +48,8 @@ public class ArticleService {
         comment.setContent(commentDto.getContent());
         comment.setArticle(article);
         comment.setUser(user);
+        article.setAuthor(user.getUserName());
+        article.setDate(new Timestamp(System.currentTimeMillis()));
 
         return commentRepository.save(comment);
     }

@@ -1,11 +1,16 @@
 package com.network.models;
 
+import java.sql.Timestamp;
+
+import io.micrometer.common.lang.NonNull;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,7 +32,15 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NonNull
     private String content;
+
+    @NonNull
+    @Temporal(TemporalType.TIMESTAMP)
+    private Timestamp date;
+
+    @NonNull
+    private String author;
 
     @ManyToOne
     @JoinColumn(name = "article_id", nullable = false)
