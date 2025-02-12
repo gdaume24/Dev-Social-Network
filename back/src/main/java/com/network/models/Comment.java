@@ -1,6 +1,4 @@
-package com.example.demo.models;
-
-import com.network.models.User;
+package com.network.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,6 +12,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
+/**
+ * Users can comment articles even if it is not their own
+ */
 @Entity
 @Data
 @Builder

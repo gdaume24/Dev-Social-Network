@@ -1,9 +1,7 @@
-package com.example.demo.models;
+package com.network.models;
 
 import java.util.HashSet;
 import java.util.Set;
-
-import com.network.models.User;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,6 +15,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
+/**
+ * A theme of programmation (Java, Python, etc.), 
+ * that user can subscribe to to get new articles published on their thread
+ */
 @Entity
 @Data
 @Builder
@@ -32,10 +34,16 @@ public class Theme {
     @Column(nullable = false, unique = true)
     private String name;
 
+    /**
+     * The theme can be followed by one or many users
+     */
     @ManyToMany(mappedBy = "themes") // Relation inverse
     @Builder.Default
     private Set<User> users = new HashSet<>();
 
+    /**
+     * The theme can be associated to one or many articles
+     */
     @ManyToMany(mappedBy = "themes") // Relation inverse
     @Builder.Default
     private Set<Article> articles = new HashSet<>();

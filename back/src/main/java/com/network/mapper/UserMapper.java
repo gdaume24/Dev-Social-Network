@@ -1,4 +1,4 @@
-package com.example.demo.mapper;
+package com.network.mapper;
 
 
 

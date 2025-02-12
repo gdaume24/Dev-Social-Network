@@ -1,10 +1,8 @@
-package com.example.demo.models;
+package com.network.models;
 
 import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
-
-import com.network.models.User;
 
 import io.micrometer.common.lang.NonNull;
 import jakarta.persistence.Entity;
@@ -21,6 +19,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
+/**
+ * Article model, representing an article writted by a user
+ */
 @Entity
 @Data
 @Builder
@@ -41,13 +42,16 @@ public class Article {
   @NonNull
     private String content;
 
-        @NonNull
+    @NonNull
     private Date date;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    /**
+     * The article belongs to one or many themes
+    */
     @ManyToMany
     @JoinTable(
             name = "article_themes", // Nom de la table intermédiaire

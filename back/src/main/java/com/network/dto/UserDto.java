@@ -1,9 +1,12 @@
-package com.example.demo.dto;
+package com.network.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Dto to map sensitive user data when returning from controller
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
