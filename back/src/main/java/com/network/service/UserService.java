@@ -1,11 +1,16 @@
 package com.network.service;
 
 
+import java.util.List;
 import java.util.stream.Collectors;
+import java.util.Comparator;
 
 import org.apache.coyote.BadRequestException;
 import org.springframework.stereotype.Service;
 
+import com.network.dto.ArticleDto;
+import com.network.mapper.ArticleMapper;
+import com.network.models.Article;
 import com.network.models.Theme;
 import com.network.models.User;
 import com.network.repository.ThemeRepository;
@@ -61,5 +66,20 @@ public class UserService {
         user.setThemes(user.getThemes().stream().filter(userTheme -> !userTheme.getId().equals(themeId)).collect(Collectors.toSet()));
 
         return userRepository.save(user);
+    }
+
+    public List<Article> getSubscribedArticles(Long userId) {
+        
+        User user = userRepository.findById(userId).orElseThrow();
+
+        // Récupère la liste des articles des thèmes auxquels l'utilisateur est abonné, puis la trie du plus récent au plus anciens
+        List<Article> filtredArticleList = user.getThemes().stream()
+            .flatMap(theme -> theme.getArticles().stream())
+            .distinct()
+            .sorted(Comparator.comparing(Article::getDate).reversed())
+            .collect(Collectors.toList());
+
+        return filtredArticleList;
+        
     }
 }

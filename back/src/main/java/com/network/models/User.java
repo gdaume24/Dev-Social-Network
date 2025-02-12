@@ -41,7 +41,7 @@ public class User {
 
   @NonNull
   @Column(name = "`password`")
-  @Size(max = 120)
+  @Size(min = 8)
   private String password;
 
   @ManyToMany

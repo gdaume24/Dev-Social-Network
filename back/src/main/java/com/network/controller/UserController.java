@@ -1,5 +1,7 @@
 package com.network.controller;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.network.dto.UserDto;
+import com.network.mapper.ArticleMapper;
 import com.network.mapper.UserMapper;
+import com.network.models.Article;
 import com.network.models.Theme;
 import com.network.models.User;
 import com.network.repository.UserRepository;
@@ -32,10 +36,12 @@ public class UserController {
 
     private final UserService userService;
     private final UserMapper userMapper;
+    private final ArticleMapper articleMapper;
 
-    public UserController(UserService userService, UserRepository userRepository, UserMapper userMapper) {
+    public UserController(UserService userService, UserMapper userMapper, ArticleMapper articleMapper) {
         this.userService = userService;
         this.userMapper = userMapper;
+        this.articleMapper = articleMapper;
     }
 
     @GetMapping("/{id}")
@@ -67,5 +73,11 @@ public class UserController {
     public ResponseEntity<?> unsubscribe(@PathVariable("userId") String userId, @PathVariable("themeId") String themeId) {
         User user = userService.unsubscribeFromTheme(Long.parseLong(userId), Long.parseLong(themeId));
         return ResponseEntity.ok().body(this.userMapper.toDto(user));
+    }
+
+    @GetMapping("{userId}/articles")
+    public ResponseEntity<?> getSubscribedArticles(@PathVariable String userId) {
+        List<Article> articleList  = userService.getSubscribedArticles(Long.parseLong(userId));
+        return ResponseEntity.ok().body(articleMapper.toDto(articleList));
     }
 }

@@ -2,8 +2,6 @@ package com.network.models;
 
 import java.sql.Date;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 import java.util.Set;
 
 import io.micrometer.common.lang.NonNull;
@@ -31,7 +29,7 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 @Accessors(chain = true)
 public class Article {
-      @Id
+  @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
@@ -44,22 +42,22 @@ public class Article {
   @NonNull
     private String content;
 
-    @NonNull
-    private Date date;
+  @NonNull
+  private Date date;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+  @ManyToOne
+  @JoinColumn(name = "user_id", nullable = false)
+  private User user;
 
-    /**
-     * The article belongs to one or many themes
-    */
-    @ManyToMany
-    @JoinTable(
-            name = "article_themes", // Nom de la table intermédiaire
-            joinColumns = @JoinColumn(name = "article_id"), // Clé étrangère vers Articles
-            inverseJoinColumns = @JoinColumn(name = "theme_id") // Clé étrangère vers Theme
-    )
-    @Builder.Default
-    private Set<Theme> themes = new HashSet<>();
+  /**
+   * The article belongs to one or many themes
+  */
+  @ManyToMany
+  @JoinTable(
+          name = "article_themes", // Nom de la table intermédiaire
+          joinColumns = @JoinColumn(name = "article_id"), // Clé étrangère vers Articles
+          inverseJoinColumns = @JoinColumn(name = "theme_id") // Clé étrangère vers Theme
+  )
+  @Builder.Default
+  private Set<Theme> themes = new HashSet<>();
 }
