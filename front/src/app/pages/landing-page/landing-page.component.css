@@ -1,0 +1,52 @@
+.center-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* height: 10vh; */
+}
+
+#image {
+margin-top: 150px;
+width: 500px;
+}
+
+.buttons {
+    margin-top: 100px;
+    display: flex;
+}
+
+button {
+    border: 1px solid;
+    width: 180px; 
+    height: 40px;
+    border-radius: 5px;
+    background-color: white;
+    font-size: 18px;
+
+}
+
+#first-button {
+    margin-right: 60px;
+}
+
+#second-button {
+    margin-left: 60px;
+}
+
+@media only screen and (max-width: 600px) {
+    #image {
+        width: 300px;
+    }
+    .buttons {
+        flex-direction: column;
+    }
+
+    #first-button, #second-button {
+        margin-right: 0; /* Remove right margin */
+        margin-left: 0; /* Remove left margin */
+    }
+
+    #first-button {
+        margin-bottom: 40px;
+    }
+}
