@@ -1,5 +1,6 @@
 import { Component, computed, inject, Input } from '@angular/core';
-import { ResponsiveService } from '../../service/responsive.service';
+import { ResponsiveService } from '../../../service/responsive.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing-page',
@@ -8,4 +9,9 @@ import { ResponsiveService } from '../../service/responsive.service';
   styleUrl: './landing-page.component.css'
 })
 export class LandingPageComponent {
+  constructor(private router: Router) {}
+
+  navigateToSignup() {
+    this.router.navigate(['/signup']);
+  }
 }
