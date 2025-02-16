@@ -1,0 +1,27 @@
+<app-banniere></app-banniere>
+<div class="content-box">
+    <button class="back" (click)="navigateBack()">
+        <mat-icon>west</mat-icon>
+    </button>
+    <img id="image" src="/icone.png" alt="image">
+    <div class="center-box">
+        <p class="header">Inscription<p>
+        <form [formGroup]="applyForm" (submit)="registration()">
+            <div class="form-group">
+                <label for="username">Nom d'utilisateur</label>
+                <input class="input" id="username" type="text" formControlName="username">
+              </div>
+              <div class="form-group">
+                <label for="email">Adresse e-mail</label>
+                <input class="input" id="email" type="text" formControlName="email">
+              </div>
+              <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input class="input" id="password" type="text" formControlName="password">
+              </div>
+              <button type="submit" class="submit-button">S'inscrire</button>
+        </form>
+    </div>
+</div>
+
+

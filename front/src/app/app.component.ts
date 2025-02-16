@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavigationStart, Router, RouterOutlet } from '@angular/router';
 import { NgIf } from '@angular/common';
-import { BanniereComponent } from './component/banniere/banniere.component';
+import { BanniereComponent } from './features/auth/components/banniere/banniere.component';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({

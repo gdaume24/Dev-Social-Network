@@ -1,5 +1,4 @@
 import { Component, computed, inject, Input } from '@angular/core';
-import { ResponsiveService } from '../../../service/responsive.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,5 +12,8 @@ export class LandingPageComponent {
 
   navigateToSignup() {
     this.router.navigate(['/signup']);
+  }
+  navigateToSignIn() {
+    this.router.navigate(['/signin']);
   }
 }

@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
-import { LandingPageComponent } from './pages/auth/landing-page/landing-page.component';
-import { SignupComponent } from './pages/auth/signup/signup.component';
+import { LandingPageComponent } from './features/auth/pages/landing-page/landing-page.component';
+import { SignupComponent } from './features/auth/pages/signup/signup.component';
+import { SigninComponent } from './features/auth/pages/signin/signin.component';
 
 export const routes: Routes = [
     {
@@ -11,4 +12,8 @@ export const routes: Routes = [
         path: 'signup',
         component: SignupComponent,
     },
+      {
+        path: 'signin',
+        component: SigninComponent,
+    }
 ];

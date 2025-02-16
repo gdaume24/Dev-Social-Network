@@ -16,12 +16,12 @@ width: 500px;
 
 button {
     border: 1px solid;
-    width: 180px; 
-    height: 40px;
+    width: 220px; 
+    height: 60px;
     border-radius: 5px;
     background-color: white;
-    font-size: 18px;
-
+    font-size: 25px;
+    cursor: pointer;
 }
 
 #first-button {
