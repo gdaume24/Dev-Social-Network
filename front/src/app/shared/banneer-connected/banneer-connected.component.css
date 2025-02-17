@@ -30,6 +30,9 @@ mat-icon {
 #menu-deroulant {
   display: none;
 }
+.purple-text {
+  color: #7451eb;
+}
 
 @media (max-width: 600px) {
   p,

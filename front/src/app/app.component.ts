@@ -12,18 +12,4 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class AppComponent {
   // Affiche la bannière seulement si on est pas sur la landing-page
-  isLandingPage = true;
-  constructor(private router: Router) {
-    this.isLandingPage = this.router?.url === '/';
-    router.events.forEach((event) => {
-      if (event instanceof NavigationStart) {
-        if (event['url'] === '/') {
-          this.isLandingPage = true;
-        }
-        else {
-          this.isLandingPage = false;
-        }
-      }
-    });
-  }
 }

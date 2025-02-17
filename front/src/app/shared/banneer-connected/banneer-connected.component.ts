@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { NavigationStart, Router } from '@angular/router';
 
 @Component({
   selector: 'app-banneer-connected',
@@ -7,4 +8,12 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './banneer-connected.component.html',
   styleUrl: './banneer-connected.component.css',
 })
-export class BanneerConnectedComponent {}
+export class BanneerConnectedComponent {
+  themeRoute = false;
+  articleRoute = false;
+  constructor(private router: Router) {}
+  ngOnInit(): void {
+    this.themeRoute = this.router?.url === '/themes';
+    this.articleRoute = this.router?.url === '/articles';
+  }
+}
