@@ -21,9 +21,26 @@ p {
   font-size: 20px;
 }
 mat-icon {
-  margin-right: 40px;
+  margin-right: 35px;
   transform: scale(1.2);
   border: 1px solid #000000; /*d3d3d3*/
   padding: 15px;
   border-radius: 50px;
+}
+#menu-deroulant {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  p,
+  #icon-person {
+    display: none; /* Masquer les éléments */
+  }
+  #menu-deroulant {
+    display: block;
+  }
+  mat-icon {
+    border: none;
+    margin-right: 10px;
+  }
 }
