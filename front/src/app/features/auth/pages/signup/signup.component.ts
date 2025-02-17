@@ -9,14 +9,14 @@ import { BanniereComponent } from '../../components/banniere/banniere.component'
   selector: 'app-signup',
   imports: [MatIconModule, ReactiveFormsModule, BanniereComponent],
   templateUrl: './signup.component.html',
-  styleUrl: './signup.component.css'
+  styleUrl: './signup.component.css',
 })
 export class SignupComponent {
   authService = inject(AuthService);
   applyForm = new FormGroup({
-  username: new FormControl(''),
-  email: new FormControl(''),
-  password: new FormControl('')
+    username: new FormControl(''),
+    email: new FormControl(''),
+    password: new FormControl(''),
   });
   constructor(private router: Router) {}
 
@@ -26,9 +26,9 @@ export class SignupComponent {
       this.applyForm.value.email ?? '',
       this.applyForm.value.password ?? ''
     );
+    this.router.navigate(['/themes']);
   }
   navigateBack() {
     this.router.navigate(['/']);
   }
 }
-
