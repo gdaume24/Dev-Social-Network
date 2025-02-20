@@ -1,2 +1,7 @@
 <app-banneer-connected></app-banneer-connected>
-<p>themes works!</p>
+@for (theme of themes() ; track theme.id) {
+<mat-card class="item">
+  <mat-card-title>{{ theme.name }}</mat-card-title>
+  <mat-card-content>{{ theme.description }}</mat-card-content>
+</mat-card>
+}
