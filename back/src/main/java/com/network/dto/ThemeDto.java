@@ -13,4 +13,5 @@ import lombok.NoArgsConstructor;
 public class ThemeDto {
     private Long id;
     private String name;
+    private String description;
 }

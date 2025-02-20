@@ -34,6 +34,9 @@ public class Theme {
     @Column(nullable = false, unique = true)
     private String name;
 
+    @Column()
+    private String description;
+
     /**
      * The theme can be followed by one or many users
      */
