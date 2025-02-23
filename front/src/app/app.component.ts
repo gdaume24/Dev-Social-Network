@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
-import { NavigationStart, Router, RouterOutlet } from '@angular/router';
-import { NgIf } from '@angular/common';
-import { BanniereComponent } from './features/auth/components/banniere/banniere.component';
+import { RouterOutlet } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
+import { ThemeComponent } from './features/themes/components/theme/theme.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatIconModule],
+  imports: [RouterOutlet, MatIconModule, ThemeComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
