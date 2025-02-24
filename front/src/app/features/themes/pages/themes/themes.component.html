@@ -2,8 +2,10 @@
 <div class="container">
   @for (theme of themes() ; track theme.id) {
   <div class="item">
-    <app-theme titre={{theme.name}} description={{theme.description}}></app-theme>
+    <app-theme
+      titre="{{ theme.name }}"
+      description="{{ theme.description }}"
+    ></app-theme>
   </div>
+  }
 </div>
-
-}

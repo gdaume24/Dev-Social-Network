@@ -7,7 +7,7 @@ import { ThemeComponent } from '../../components/theme/theme.component';
 @Component({
   selector: 'app-themes',
   standalone: true,
-  imports: [BanneerConnectedComponent, NgFor, AsyncPipe, ThemeComponent],
+  imports: [BanneerConnectedComponent, ThemeComponent],
   templateUrl: './themes.component.html',
   styleUrls: ['./themes.component.css'],
 })
