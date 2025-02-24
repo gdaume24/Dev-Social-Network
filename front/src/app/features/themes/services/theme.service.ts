@@ -15,4 +15,8 @@ export class ThemeService {
       .get<Theme[]>(this.pathService)
       .pipe(tap((themes) => this.themes.set(themes)));
   }
+
+  public subscribeToTheme(themeid: string): Observable<any> {
+
 }
+

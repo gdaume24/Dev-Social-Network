@@ -3,8 +3,9 @@
   @for (theme of themes() ; track theme.id) {
   <div class="item">
     <app-theme
-      titre="{{ theme.name }}"
-      description="{{ theme.description }}"
+      [id]="theme.id.toString()"
+      [titre]="theme.name"
+      [description]="theme.description"
     ></app-theme>
   </div>
   }

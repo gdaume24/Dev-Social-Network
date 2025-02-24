@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 
 
 /**
- * usefull ???
+ * For subscribing to themes, getting subscribed articles and updating user information
  */
 @RestController
 @CrossOrigin
