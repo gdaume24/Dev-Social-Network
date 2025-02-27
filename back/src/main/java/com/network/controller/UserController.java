@@ -16,9 +16,7 @@ import com.network.dto.UserDto;
 import com.network.mapper.ArticleMapper;
 import com.network.mapper.UserMapper;
 import com.network.models.Article;
-import com.network.models.Theme;
 import com.network.models.User;
-import com.network.repository.UserRepository;
 import com.network.service.UserService;
 
 import jakarta.validation.Valid;
