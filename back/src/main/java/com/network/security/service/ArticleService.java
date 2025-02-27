@@ -1,4 +1,4 @@
-package com.network.service;
+package com.network.security.service;
 
 import java.sql.Date;
 import java.sql.Timestamp;

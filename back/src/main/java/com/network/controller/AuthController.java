@@ -1,7 +1,12 @@
 package com.network.controller;
 
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +20,7 @@ import com.network.payload.request.SignupRequest;
 import com.network.payload.response.MessageResponse;
 import com.network.payload.response.UserResponse;
 import com.network.repository.UserRepository;
-import com.network.service.UserService;
+import com.network.security.service.UserService;
 
 import jakarta.validation.Valid;
 
@@ -27,6 +32,8 @@ import jakarta.validation.Valid;
 @RequestMapping("/auth")
 public class AuthController {
 
+    @Autowired
+    private AuthenticationManager authenticationManager;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final UserService userService;
@@ -44,7 +51,9 @@ public class AuthController {
      * @return a ResponseEntity containing the authenticated user's details
      */
     @PostMapping("/login")
-    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+    public Map<String, String> login(@Valid @RequestBody LoginRequest loginRequest) {
+
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
 
         User user = this.userRepository.findByEmail(loginRequest.getEmail()).orElse(null);
 

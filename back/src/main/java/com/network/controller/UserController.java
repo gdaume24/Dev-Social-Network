@@ -17,7 +17,7 @@ import com.network.mapper.ArticleMapper;
 import com.network.mapper.UserMapper;
 import com.network.models.Article;
 import com.network.models.User;
-import com.network.service.UserService;
+import com.network.security.service.UserService;
 
 import jakarta.validation.Valid;
 

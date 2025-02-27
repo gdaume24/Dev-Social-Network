@@ -13,7 +13,7 @@ import com.network.dto.ArticleDto;
 import com.network.dto.CommentDto;
 import com.network.mapper.ArticleMapper;
 import com.network.models.Article;
-import com.network.service.ArticleService;
+import com.network.security.service.ArticleService;
 
 import jakarta.validation.Valid;
 
