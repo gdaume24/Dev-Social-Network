@@ -7,6 +7,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.network.models.User;
+import com.network.payload.request.LoginRequest;
+import com.network.payload.request.SignupRequest;
+import com.network.payload.response.AuthReponse;
+import com.network.repository.UserRepository;
+
 @Service
 public class AuthService {
 
@@ -27,18 +33,18 @@ public class AuthService {
         this.jwtService = jwtService;
     }
 
-    public ResponseEntity<AuthReponse> register(RegisterRequestDto registerRequestDto) {
+    public ResponseEntity<AuthReponse> register(SignupRequest signupRequest) {
         User user = new User()
-                .setName(registerRequestDto.getName())
-                .setEmail(registerRequestDto.getEmail())
-                .setPassword(passwordEncoder.encode(registerRequestDto.getPassword()));
+                .setUserName(signupRequest.getUserName())
+                .setEmail(signupRequest.getEmail())
+                .setPassword(passwordEncoder.encode(signupRequest.getPassword()));
         User registeredUser = userRepository.save(user);
         AuthReponse authReponse = createAuthReponse(registeredUser);
         
         return ResponseEntity.ok(authReponse);
     }
 
-    public ResponseEntity<AuthReponse> authenticate(LoginRequestDto loginRequestDto) {
+    public ResponseEntity<AuthReponse> authenticate(LoginRequest loginRequestDto) {
         
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -62,6 +68,6 @@ public class AuthService {
     }
     
     public boolean hasUserWithName(String name) {
-        return userRepository.findByName(name).isPresent();
+        return userRepository.findByUserName(name).isPresent();
     }
 }

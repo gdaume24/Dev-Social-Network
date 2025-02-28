@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.network.mapper.ThemeMapper;
 import com.network.models.Theme;
-import com.network.security.service.ThemeService;
+import com.network.services.ThemeService;
 
 /**
  * Controller to show all themes, subscribe or unsubscribe from themes
