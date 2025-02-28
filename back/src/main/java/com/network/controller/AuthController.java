@@ -1,13 +1,23 @@
 package com.network.controller;
 
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.jose.jws.MacAlgorithm;
+import org.springframework.security.oauth2.jwt.JwsHeader;
+import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.oauth2.jwt.JwtClaimsSet;
+import org.springframework.security.oauth2.jwt.JwtEncoder;
+import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,68 +31,54 @@ import com.network.payload.response.MessageResponse;
 import com.network.payload.response.UserResponse;
 import com.network.repository.UserRepository;
 import com.network.security.service.UserService;
+import com.network.services.AuthService;
 
 import jakarta.validation.Valid;
 
 /**
  * Controller for authentication
  */
+@RequestMapping("auth")
 @RestController
-@CrossOrigin
-@RequestMapping("/auth")
 public class AuthController {
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
-    private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
+    private final AuthService authService;
     private final UserService userService;
 
-    AuthController(UserRepository userRepository, PasswordEncoder passwordEncoder, UserService userService) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
+    public AuthController(AuthService authService, UserService userService) {
+        this.authService = authService;
         this.userService = userService;
     }
 
-    /**
-     * Authenticates a user based on the provided login request.
-     *
-     * @param loginRequest the login request containing the user's email and password
-     * @return a ResponseEntity containing the authenticated user's details
-     */
-    @PostMapping("/login")
-    public Map<String, String> login(@Valid @RequestBody LoginRequest loginRequest) {
+    @PostMapping("register")
+    public ResponseEntity<AuthReponse> register(@RequestBody RegisterRequestDto registerRequestDto) {
 
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword()));
-
-        User user = this.userRepository.findByEmail(loginRequest.getEmail()).orElse(null);
-
-        return ResponseEntity.ok(new UserResponse()
-            .setId(user.getId())
-            .setEmail(user.getEmail())
-            .setUserName(user.getUserName()));
+        if (authService.hasUserWithEmail(registerRequestDto.getEmail())) {
+            throw new BadRequestException("Un utilisateur avec cet email existe déjà.");
+        }
+        else if (authService.hasUserWithName(registerRequestDto.getName())) {
+            throw new BadRequestException("Un utilisateur avec ce nom existe déjà.");
         }
 
-    /**
-     * Registers a new user based on the provided signup request.
-     *
-     * @param signUpRequest the signup request containing the user's email, username, and password
-     * @return a ResponseEntity containing the newly created user's details or an error message if the email is already taken
-     */
-    @PostMapping("/register")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-        if (userRepository.existsByEmail(signUpRequest.getEmail())) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponse("Error: Email is already taken!"));
+        return authService.register(registerRequestDto);        
+    }
+
+    @PostMapping("login")
+    public ResponseEntity<AuthReponse> authenticate(@RequestBody LoginRequestDto loginRequestDto) {
+
+        try {
+            return authService.authenticate(loginRequestDto);
         }
+        catch (AuthenticationException e) {
+            throw new UnauthorizedException("Email ou mot de passe incorrect.");
+        }
+    }
 
-        User newUser = userService.createUser(
-            signUpRequest.getEmail(), 
-            signUpRequest.getUserName(), 
-            passwordEncoder.encode(signUpRequest.getPassword())
-            );
+    @GetMapping("me")
+    public ResponseEntity<AuthMeReponse> authenticatedUser() {
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
+        AuthMeReponse response = userService.getAuthenticatedUserAuthMeReponse();
+        
+        return ResponseEntity.ok(response);
     }
 }

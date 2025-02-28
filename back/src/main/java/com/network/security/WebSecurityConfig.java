@@ -59,7 +59,8 @@ public class WebSecurityConfig {
     return httpSecurity
       .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
       .csrf(csrf -> csrf.disable())
-      .authorizeHttpRequests(ar -> ar.anyRequest().authenticated())
+      .authorizeHttpRequests(ar -> ar.requestMatchers("/auth/login/**").permitAll())
+      // .authorizeHttpRequests(ar -> ar.anyRequest().authenticated())
       //.httpBasic(Customizer.withDefaults())
       .oauth2ResourceServer(oa -> oa.jwt(Customizer.withDefaults()))
       .build();
@@ -79,7 +80,7 @@ public class WebSecurityConfig {
   @Bean
   JwtDecoder jwtDecoder() {
     SecretKeySpec secretKeySpec = new SecretKeySpec(secretKey.getBytes(), "RSA");
-    return NimbusJwtDecoder.withSecretKey(secretKeySpec).macAlgorithm(MacAlgorithm.HS512).build();
+    return NimbusJwtDecoder.withSecretKey(secretKeySpec).macAlgorithm(MacAlgorithm.HS256).build();
   }
 
   @Bean

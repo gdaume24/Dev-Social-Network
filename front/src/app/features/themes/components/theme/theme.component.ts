@@ -16,8 +16,9 @@ export class ThemeComponent {
   constructor(private themeService: ThemeService) {}
 
   onSubscribe() {
-    this.themeService.subscribeToTheme(this.id).subscribe((response) => {
-      console.log('Subscribed to theme:', response);
-    });
+    // this.themeService.subscribeToTheme(this.id).subscribe((response) => {
+    //   console.log('Subscribed to theme:', response);
+    // });
+    return null;
   }
 }
