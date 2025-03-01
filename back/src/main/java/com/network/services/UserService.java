@@ -6,10 +6,14 @@ import java.util.stream.Collectors;
 import java.util.Comparator;
 
 import org.apache.coyote.BadRequestException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.network.dto.ArticleDto;
+import com.network.dto.UserDto;
 import com.network.mapper.ArticleMapper;
+import com.network.mapper.UserMapper;
 import com.network.models.Article;
 import com.network.models.Theme;
 import com.network.models.User;
@@ -24,10 +28,12 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final ThemeRepository themeRepository;
+    private final UserMapper userMapper;
 
-    public UserService(UserRepository userRepository, ThemeRepository themeRepository) {
+    public UserService(UserRepository userRepository, ThemeRepository themeRepository, UserMapper userMapper) {
         this.userRepository = userRepository;
         this.themeRepository = themeRepository;
+        this.userMapper = userMapper;
     }
 
     public User createUser(String email, String userName, String password) {
@@ -82,4 +88,23 @@ public class UserService {
         return filtredArticleList;
         
     }
+
+        public User getAuthenticatedUser() {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getPrincipal() instanceof User) {
+            User currentUser = (User) authentication.getPrincipal();
+            return currentUser;
+        }
+
+        throw new RuntimeException("Utilisateur non authentifié");
+    }
+
+    public UserDto getAuthenticatedUserAuthMeReponse() {
+
+        User currentUser = getAuthenticatedUser();
+        UserDto response = userMapper.toDto(currentUser);
+        
+        return response;
+        }
 }
