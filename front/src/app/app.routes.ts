@@ -3,6 +3,7 @@ import { LandingPageComponent } from './features/auth/pages/landing-page/landing
 import { SignupComponent } from './features/auth/pages/signup/signup.component';
 import { SigninComponent } from './features/auth/pages/signin/signin.component';
 import { ThemesComponent } from './features/themes/pages/themes/themes.component';
+import { ArticlesComponent } from './features/articles/pages/articles/articles.component';
 
 export const routes: Routes = [
   {
@@ -21,4 +22,8 @@ export const routes: Routes = [
     path: 'themes',
     component: ThemesComponent,
   },
+  {
+    path: 'articles',
+    component: ArticlesComponent,
+  }
 ];

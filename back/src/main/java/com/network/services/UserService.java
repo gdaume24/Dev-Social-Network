@@ -5,14 +5,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.Comparator;
 
-import org.apache.coyote.BadRequestException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import com.network.dto.ArticleDto;
 import com.network.dto.UserDto;
-import com.network.mapper.ArticleMapper;
 import com.network.mapper.UserMapper;
 import com.network.models.Article;
 import com.network.models.Theme;

@@ -1,15 +1,36 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { User } from '../interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
-  private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:8080/api/users/test-request'; // Remplace par ton URL backend
 
-  getTestRequest(): Observable<string> {
-    return this.http.get(this.apiUrl, { responseType: 'text' });
+  public isLogged = false;
+  public user: User | undefined;
+
+  private isLoggedSubject = new BehaviorSubject<boolean>(this.isLogged);
+
+  public $isLogged(): Observable<boolean> {
+    return this.isLoggedSubject.asObservable();
+  }
+
+  public logIn(user: User): void {
+    this.user = user;
+    this.isLogged = true;
+    this.next();
+  }
+
+  public logOut(): void {
+    localStorage.removeItem('token');
+    this.user = undefined;
+    this.isLogged = false;
+    this.next();
+  }
+
+  private next(): void {
+    this.isLoggedSubject.next(this.isLogged);
   }
 }

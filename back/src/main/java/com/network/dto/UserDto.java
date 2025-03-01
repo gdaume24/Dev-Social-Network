@@ -2,8 +2,6 @@ package com.network.dto;
 
 import java.util.Set;
 
-import com.network.models.Theme;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +17,6 @@ public class UserDto {
     private Long id;
     private String email;
     private String userName;
-    private Set<Theme> themes;
+    private Set<ThemeDto> themes;
     
 }
