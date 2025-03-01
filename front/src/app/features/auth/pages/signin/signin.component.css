@@ -1,18 +1,19 @@
 mat-icon {
   padding-top: 2px;
-  transform: scale(1.5);
-}
-.back {
-  align-self: flex-start;
-  margin-left: 50px;
-  margin-top: 28px;
-  background-color: white;
-  border: none;
-  cursor: pointer;
+  transform: scale(1.1);
 }
 .content-box {
   display: flex;
 }
+.back_button {
+  align-self: flex-start;
+  margin-left: 1.7rem;
+  margin-top: 1.5rem;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+}
+
 .center-box {
   display: flex;
   flex-direction: column;
@@ -20,26 +21,30 @@ mat-icon {
   flex-grow: 4;
 }
 .header {
-  font-size: 33px;
+  font-size: 18px;
   margin-top: 30px;
   margin-bottom: 30px;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5rem;
 }
 .form-group {
   display: flex;
   flex-direction: column;
   margin-bottom: 50px;
-  font-size: 22px;
+  font-size: 14px;
 }
 .input {
-  height: 50px;
-  width: 280px;
+  height: 2.5rem;
+  width: 15rem;
   border-radius: 5px;
-  font-size: 20px;
+  font-size: 14px;
   border-width: 1px;
 }
 .submit-button {
-  font-size: 22px;
-  margin-left: 54px;
+  font-size: 18px;
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 30px;
@@ -49,6 +54,7 @@ mat-icon {
   border: none;
   color: white;
   cursor: pointer;
+  align-self: center;
 }
 #image {
   display: none;
