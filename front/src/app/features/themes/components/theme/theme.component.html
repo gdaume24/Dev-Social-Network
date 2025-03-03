@@ -1,5 +1,11 @@
 <mat-card>
   <mat-card-title>{{ titre }}</mat-card-title>
   <mat-card-content>{{ description }}</mat-card-content>
-  <button (onClick)="onSubscribe()">S'abonner</button>
+  <button
+    [disabled]="isSubscribed"
+    [ngClass]="{ subscribed: isSubscribed }"
+    (click)="onSubscribe()"
+  >
+    {{ isSubscribed ? "Abonné" : "S'abonner" }}
+  </button>
 </mat-card>

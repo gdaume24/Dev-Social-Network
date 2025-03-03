@@ -71,6 +71,12 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    public boolean isSubscribedToTheme(Long userId, Long themeId) {
+
+        User user = userRepository.findById(userId).orElseThrow();
+        return user.getThemes().stream().anyMatch(theme -> theme.getId().equals(themeId));
+    }
+
     public List<Article> getSubscribedArticles(Long userId) {
         
         User user = userRepository.findById(userId).orElseThrow();

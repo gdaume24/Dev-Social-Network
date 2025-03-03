@@ -27,7 +27,7 @@ export class AuthService {
       loginRequest
     );
   }
-  public me(): Observable<User> {
+  me(): Observable<User> {
     return this.httpClient.get<User>(`${this.pathService}/me`);
   }
 }

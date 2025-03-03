@@ -73,6 +73,12 @@ public class UserController {
         return ResponseEntity.ok().body(this.userMapper.toDto(user));
     }
 
+    @GetMapping("/{userId}/isSubscribed/{themeId}")
+    public ResponseEntity<Boolean> isSubscribedToTheme(@PathVariable Long userId, @PathVariable Long themeId) {
+        boolean isSubscribed = userService.isSubscribedToTheme(userId, themeId);
+        return ResponseEntity.ok(isSubscribed);
+    }
+
     @GetMapping("{userId}/articles")
     public ResponseEntity<?> getSubscribedArticles(@PathVariable String userId) {
         List<Article> articleList  = userService.getSubscribedArticles(Long.parseLong(userId));

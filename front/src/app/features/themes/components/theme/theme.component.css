@@ -29,3 +29,8 @@ button {
   color: white;
   border: none;
 }
+button.subscribed {
+  background-color: grey;
+  color: white;
+  cursor: pointer;
+}
