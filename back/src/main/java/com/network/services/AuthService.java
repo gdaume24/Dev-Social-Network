@@ -1,9 +1,11 @@
 package com.network.services;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -46,16 +48,23 @@ public class AuthService {
 
     public ResponseEntity<AuthReponse> authenticate(LoginRequest loginRequestDto) {
         
-        Authentication authentication = authenticationManager.authenticate(
+        try {
+            Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                     loginRequestDto.getEmail(),
                     loginRequestDto.getPassword()
                 )
-        );
-        User authenticatedUser = (User) authentication.getPrincipal();
-        AuthReponse authReponse = createAuthReponse(authenticatedUser);
+            );
+            User authenticatedUser = (User) authentication.getPrincipal();
+            AuthReponse authReponse = createAuthReponse(authenticatedUser);
 
-        return ResponseEntity.ok(authReponse);
+            return ResponseEntity.ok(authReponse); 
+        }
+
+
+        catch (AuthenticationException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
     }
 
     private AuthReponse createAuthReponse(User user) {
