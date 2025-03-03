@@ -1,13 +1,13 @@
 <div class="banner">
-  <img id="image" src="/icone.png" alt="image" />
+  <img id="logo" src="/icone.png" alt="image" />
   <div class="menu">
-    <button>
+    <button (click)="navigateToArticles()">
       <p [class.purple-text]="articleRoute">Articles</p>
     </button>
-    <button id="theme_button">
+    <button (click)="navigateToThemes()" id="theme_button">
       <p id="themes" [class.purple-text]="themeRoute">Thèmes</p>
     </button>
-    <mat-icon id="icon-person">person</mat-icon>
+    <img id="user-icon" src="/user-icon.png" alt="image" />
     <mat-icon id="menu-deroulant">menu</mat-icon>
   </div>
 </div>

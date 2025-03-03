@@ -16,4 +16,10 @@ export class BanneerConnectedComponent {
     this.themeRoute = this.router?.url === '/themes';
     this.articleRoute = this.router?.url === '/articles';
   }
+  navigateToThemes() {
+    this.router.navigate(['/themes']);
+  }
+  navigateToArticles() {
+    this.router.navigate(['/articles']);
+  }
 }
