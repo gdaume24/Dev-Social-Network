@@ -48,23 +48,16 @@ public class AuthService {
 
     public ResponseEntity<AuthReponse> authenticate(LoginRequest loginRequestDto) {
         
-        try {
-            Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                    loginRequestDto.getEmail(),
-                    loginRequestDto.getPassword()
-                )
-            );
-            User authenticatedUser = (User) authentication.getPrincipal();
-            AuthReponse authReponse = createAuthReponse(authenticatedUser);
+        Authentication authentication = authenticationManager.authenticate(
+            new UsernamePasswordAuthenticationToken(
+                loginRequestDto.getEmail(),
+                loginRequestDto.getPassword()
+            )
+        );
+        User authenticatedUser = (User) authentication.getPrincipal();
+        AuthReponse authReponse = createAuthReponse(authenticatedUser);
 
-            return ResponseEntity.ok(authReponse); 
-        }
-
-
-        catch (AuthenticationException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
+        return ResponseEntity.ok(authReponse); 
     }
 
     private AuthReponse createAuthReponse(User user) {

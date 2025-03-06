@@ -46,7 +46,7 @@ public class AuthController {
     }
 
     @PostMapping("login")
-    public ResponseEntity<AuthReponse> authenticate(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<AuthReponse> authenticateController(@RequestBody LoginRequest loginRequest) {
 
         try {
             return authService.authenticate(loginRequest);
