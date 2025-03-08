@@ -10,11 +10,12 @@ import { AuthService } from '../../auth/services/auth.service';
 export class ThemeService {
   private httpClient = inject(HttpClient);
   private authService = inject(AuthService);
-  private pathService = 'api/users';
+  private pathService = 'api/toto';
+  private pathThemeService = 'api/themes';
   themes = signal<Theme[]>([]);
   public getAll(): Observable<Theme[]> {
     return this.httpClient
-      .get<Theme[]>(this.pathService)
+      .get<Theme[]>('api/themes')
       .pipe(tap((themes) => this.themes.set(themes)));
   }
 
