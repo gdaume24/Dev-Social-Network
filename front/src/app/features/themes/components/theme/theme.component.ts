@@ -28,6 +28,7 @@ export class ThemeComponent {
     if (!this.isSubscribed) {
       this.themeService.subscribeToTheme(this.id).subscribe((response) => {
         console.log('Subscribed to theme:', response);
+        this.isSubscribed = true;
       });
     } else {
       this.onUnsubscribe();

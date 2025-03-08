@@ -10,7 +10,7 @@ import { AuthService } from '../../auth/services/auth.service';
 export class ThemeService {
   private httpClient = inject(HttpClient);
   private authService = inject(AuthService);
-  private pathService = 'api/toto';
+  private pathService = 'api/users';
   private pathThemeService = 'api/themes';
   themes = signal<Theme[]>([]);
   public getAll(): Observable<Theme[]> {

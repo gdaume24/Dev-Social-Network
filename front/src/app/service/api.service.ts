@@ -7,7 +7,6 @@ import { User } from '../interfaces/user.interface';
   providedIn: 'root',
 })
 export class ApiService {
-
   public isLogged = false;
   public user: User | undefined;
 
@@ -18,7 +17,6 @@ export class ApiService {
   }
 
   public logIn(user: User): void {
-    this.user = user;
     this.isLogged = true;
     this.next();
   }
