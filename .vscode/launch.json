@@ -1,6 +1,13 @@
 {
   "configurations": [
     {
+      "name": "Launch Chrome",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:4200/",
+      "webRoot": "${workspaceFolder}/front"
+    },
+    {
       "type": "java",
       "name": "Application",
       "request": "launch",

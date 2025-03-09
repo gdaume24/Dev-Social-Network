@@ -11,6 +11,12 @@ export class JwtInterceptor implements HttpInterceptor {
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler) {
+    const authExcludedEndpoints = ['/api/auth/register', '/api/auth/login'];
+    const myUrl = request.url;
+    if (authExcludedEndpoints.some((url) => request.url.includes(url))) {
+      return next.handle(request);
+    }
+
     if (isPlatformBrowser(this.platformId)) {
       const token = localStorage.getItem('token');
       if (token) {

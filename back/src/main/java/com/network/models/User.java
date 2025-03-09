@@ -63,7 +63,7 @@ public class User implements UserDetails{
   @Builder.Default
   private Set<Theme> themes = new HashSet<>();
 
-     @Override
+    @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of();
     }
