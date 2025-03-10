@@ -1,11 +1,13 @@
 {
   "configurations": [
     {
-      "name": "Launch Chrome",
+      "name": "ng serve my sub application",
       "type": "chrome",
       "request": "launch",
-      "url": "http://localhost:4200/",
-      "webRoot": "${workspaceFolder}/front"
+      "cwd": "${workspaceFolder}/front",
+      "preLaunchTask": "npm: start",
+      "url": "http://localhost:4200",
+      "webRoot": "${workspaceRoot}/front"
     },
     {
       "type": "java",
