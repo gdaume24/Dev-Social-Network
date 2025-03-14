@@ -1,6 +1,8 @@
 package com.network.models;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.Column;
@@ -42,13 +44,13 @@ public class Theme {
      */
     @ManyToMany(mappedBy = "themes") // Relation inverse
     @Builder.Default
-    private Set<User> users = new HashSet<>();
+    private List<User> users = new ArrayList<>();
 
     /**
      * The theme can be associated to one or many articles
      */
     @ManyToMany(mappedBy = "themes") // Relation inverse
     @Builder.Default
-    private Set<Article> articles = new HashSet<>();
+    private List<Article> articles = new ArrayList<>();
 
 }

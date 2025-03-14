@@ -61,13 +61,13 @@ public class UserController {
         return ResponseEntity.ok().body(this.userMapper.toDto(user));
     }
 
-    @PostMapping("{userId}/subscribe/{themeId}")
+    @PostMapping("/{userId}/subscribe/{themeId}")
     public ResponseEntity<?> subscribe(@PathVariable("userId") String userId, @PathVariable("themeId") String themeId) {
         User user = userService.subscribeToTheme(Long.parseLong(userId), Long.parseLong(themeId));
         return ResponseEntity.ok().body(this.userMapper.toDto(user));
     }
 
-    @DeleteMapping("{userId}/subscribe/{themeId}")
+    @DeleteMapping("/{userId}/unsubscribe/{themeId}")
     public ResponseEntity<?> unsubscribe(@PathVariable("userId") String userId, @PathVariable("themeId") String themeId) {
         User user = userService.unsubscribeFromTheme(Long.parseLong(userId), Long.parseLong(themeId));
         return ResponseEntity.ok().body(this.userMapper.toDto(user));

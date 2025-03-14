@@ -2,7 +2,6 @@
   <mat-card-title>{{ titre }}</mat-card-title>
   <mat-card-content>{{ description }}</mat-card-content>
   <button
-    [disabled]="isSubscribed"
     [ngClass]="{ subscribed: isSubscribed }"
     (click)="onSubscribe()"
   >

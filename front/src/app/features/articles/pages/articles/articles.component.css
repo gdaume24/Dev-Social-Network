@@ -1,0 +1,15 @@
+.creer_article_button {
+    font-size: 18px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 5px;
+    background-color: #7451eb;
+    border: none;
+    color: white;
+    cursor: pointer;
+    align-self: center;
+    margin-left: 1.5em;
+    margin-top: 1.5em;
+  }

@@ -3,6 +3,7 @@ package com.network.models;
 import lombok.*;
 import lombok.experimental.Accessors;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -61,7 +62,7 @@ public class User implements UserDetails{
     inverseJoinColumns = @JoinColumn(name = "theme_id")
   )
   @Builder.Default
-  private Set<Theme> themes = new HashSet<>();
+  private List<Theme> themes = new ArrayList<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

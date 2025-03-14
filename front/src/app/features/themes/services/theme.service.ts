@@ -35,7 +35,7 @@ export class ThemeService {
     return this.authService.me().pipe(
       switchMap((user) => {
         const userId = user.id;
-        return this.httpClient.post(
+        return this.httpClient.delete(
           `${this.pathService}/${userId}/unsubscribe/${themeId}`,
           {}
         );

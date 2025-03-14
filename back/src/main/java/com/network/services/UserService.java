@@ -66,7 +66,7 @@ public class UserService {
     public User unsubscribeFromTheme(Long userId, Long themeId) {
 
         User user = userRepository.findById(userId).orElseThrow();
-        user.setThemes(user.getThemes().stream().filter(userTheme -> !userTheme.getId().equals(themeId)).collect(Collectors.toSet()));
+        user.setThemes(user.getThemes().stream().filter(userTheme -> !userTheme.getId().equals(themeId)).collect(Collectors.toList()));
 
         return userRepository.save(user);
     }
