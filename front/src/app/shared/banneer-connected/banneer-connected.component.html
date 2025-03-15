@@ -1,6 +1,9 @@
 <div class="banner">
   <img id="logo" src="/icone.png" alt="image" />
   <div class="menu">
+    <button (click)="logout()">
+      <p class="disconnect-text">Se déconnecter</p>
+    </button>
     <button (click)="navigateToArticles()">
       <p [class.purple-text]="articleRoute">Articles</p>
     </button>

@@ -22,4 +22,13 @@ export class BanneerConnectedComponent {
   navigateToArticles() {
     this.router.navigate(['/articles']);
   }
+  logout() {
+    // Clear authentication data (e.g., tokens)
+    localStorage.removeItem('authToken');
+    sessionStorage.clear();
+
+    // Redirect to login or home page
+    this.router.navigate(['']);
+  }
+
 }
