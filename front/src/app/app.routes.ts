@@ -5,6 +5,7 @@ import { SigninComponent } from './features/auth/pages/signin/signin.component';
 import { ThemesComponent } from './features/themes/pages/themes/themes.component';
 import { ArticlesComponent } from './features/articles/pages/articles/articles.component';
 import { NewArticleComponent } from './features/articles/pages/new-article/new-article.component';
+import { ProfileComponent } from './features/profile/profile.component';
 
 export const routes: Routes = [
   {
@@ -30,5 +31,9 @@ export const routes: Routes = [
   {
     path: 'new-article',
     component: NewArticleComponent,
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
   }
 ];

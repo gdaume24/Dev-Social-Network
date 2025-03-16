@@ -1,0 +1,79 @@
+.container {
+    display: flex;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 1rem;
+}
+mat-icon {
+    padding-top: 2px;
+    transform: scale(1.1);
+}
+.back_button {
+align-self: flex-start;
+margin-left: 1.7rem;
+margin-top: 1.5rem;
+background-color: white;
+border: none;
+cursor: pointer;
+}
+.sub-container {
+    display:flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1.5rem;
+    width: 100%;
+    max-width: 800px;
+    align-items: center;
+}
+#bold-text {
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    font-size: 22px;
+    align-self: center;
+}
+.input {
+    border-color: #7763c5;
+    border-width: 2px;
+    border-radius: 5px;
+    border-width: 2px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 7px;
+    font-size: 20px;
+    margin-bottom: 1.5rem;
+    margin-right: 2rem;
+    width: 100%;
+}
+.input-content {
+    @extend .input;
+    height: 18rem;   
+    vertical-align: top;
+}
+.submit-button {
+    font-size: 18px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 8rem;
+    border-radius: 5px;
+    background-color: #7451eb;
+    border: none;
+    color: white;
+    cursor: pointer;
+    align-self: center;
+  }
+
+@media (max-width: 600px) {
+    .container {
+        flex-direction: column;
+    }
+    .input {
+        margin-left: 2rem;
+    }
+    .sub-container {
+        margin-top: 0.8rem;
+    }
+    .back_button {
+        margin-left: 0.5rem;
+    }
+  }

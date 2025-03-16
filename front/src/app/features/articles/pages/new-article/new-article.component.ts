@@ -7,7 +7,7 @@ import { BanneerConnectedComponent } from '../../../../shared/banneer-connected/
   selector: 'app-new-article',
   imports: [MatIconModule, BanneerConnectedComponent],
   templateUrl: './new-article.component.html',
-  styleUrl: './new-article.component.css'
+  styleUrl: './new-article.component.scss'
 })
 export class NewArticleComponent {
 

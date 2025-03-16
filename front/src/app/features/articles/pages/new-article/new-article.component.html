@@ -4,10 +4,12 @@
         <mat-icon>west</mat-icon>
     </button>
     <div class="sub-container">
-        <p class="font-bold text-xl" id="bold-text">Créer un nouvel article</p>
-        <select class="input">
-            <option value="" disabled selected class="placeholder">Sélectionnez un thème</option>
-            <!-- <option *ngFor="let theme of themes" [value]="theme.id">{{ theme.name }}</option> -->
-        </select>
+        <p id="bold-text">Créer un nouvel article</p>
+        <input type="text" class="input" placeholder="Sélectionner un thème">
+        <!-- Liste des suggestions -->
+        <ul id="suggestionsList"></ul>
+        <input type="text" class="input" placeholder="Titre de l'article">
+        <textarea type="text" class="input-content" placeholder="Contenu de l'article"></textarea>
+        <button class="submit-button">Créer</button>
     </div>
 </div>

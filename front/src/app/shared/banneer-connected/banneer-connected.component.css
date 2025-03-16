@@ -40,13 +40,6 @@ p {
   margin-right: 25px;
   height: 2.4rem;
 }
-mat-icon {
-  margin-right: 20px;
-  transform: scale(1);
-  border: 1px solid #000000; /*d3d3d3*/
-  padding: 15px;
-  border-radius: 50px;
-}
 #menu-deroulant {
   display: none;
 }
@@ -56,7 +49,8 @@ mat-icon {
 
 @media (max-width: 600px) {
   p,
-  #icon-person {
+  #icon-person,
+  #user-icon {
     display: none; /* Masquer les éléments */
   }
   #menu-deroulant {
@@ -64,6 +58,12 @@ mat-icon {
   }
   mat-icon {
     border: none;
-    margin-right: 10px;
+    margin-right: 1rem;
+  }
+  .mat-menu-panel {
+    background-color: transparent; /* Supprime le fond gris */
+    box-shadow: none; /* Supprime l'ombre */
+    margin: 0; /* Supprime les marges */
+    padding: 0; /* Supprime les paddings */
   }
 }
