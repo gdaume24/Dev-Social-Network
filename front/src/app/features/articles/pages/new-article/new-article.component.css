@@ -15,7 +15,6 @@ background-color: white;
 border: none;
 cursor: pointer;
 }
-
 .sub-container {
     display:flex;
     flex-direction: column;
@@ -24,5 +23,13 @@ cursor: pointer;
     margin-top: 1.5rem;
 }
 #bold-text {
-    /* margin-bottom: 50px; */
+    margin-bottom: 2.5rem;
+}
+.input {
+border-color: #7763c5;
+border-width: 2px;
+border-radius: 5px;
+}
+::placeholder {
+    color: gray !important;
 }

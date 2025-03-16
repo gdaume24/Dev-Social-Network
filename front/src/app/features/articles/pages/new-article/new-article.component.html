@@ -4,8 +4,10 @@
         <mat-icon>west</mat-icon>
     </button>
     <div class="sub-container">
-        <p class="inline m-40 font-bold text-xl "  id="bold-text">Créer un nouvel article</p>
-        <select class="rounded-lg border-2 border-purple-500 p-2 text-gray-700">
+        <p class="font-bold text-xl" id="bold-text">Créer un nouvel article</p>
+        <select class="input">
+            <option value="" disabled selected class="placeholder">Sélectionnez un thème</option>
+            <!-- <option *ngFor="let theme of themes" [value]="theme.id">{{ theme.name }}</option> -->
         </select>
     </div>
 </div>
