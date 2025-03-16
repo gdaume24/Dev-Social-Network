@@ -2,6 +2,7 @@
   border-bottom: 1px solid #000;
   display: flex;
   align-items: center;
+  padding-right: 1rem
 }
 #logo {
   width: 6rem;
@@ -15,6 +16,7 @@
   display: flex;
   justify-content: flex-end;
   flex-grow: 1;
+  overflow: hidden
 }
 button {
   padding-left: 1rem;
@@ -50,7 +52,8 @@ p {
 @media (max-width: 600px) {
   p,
   #icon-person,
-  #user-icon {
+  #user-icon,
+  #theme_button {
     display: none; /* Masquer les éléments */
   }
   #menu-deroulant {
@@ -58,12 +61,9 @@ p {
   }
   mat-icon {
     border: none;
-    margin-right: 1rem;
+    margin-right: 1.2rem;
   }
-  .mat-menu-panel {
-    background-color: transparent; /* Supprime le fond gris */
-    box-shadow: none; /* Supprime l'ombre */
-    margin: 0; /* Supprime les marges */
-    padding: 0; /* Supprime les paddings */
+  mat-menu {
+    overflow: hidden;
   }
 }

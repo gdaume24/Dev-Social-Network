@@ -11,26 +11,33 @@
       <p id="themes" [class.purple-text]="themeRoute">Thèmes</p>
     </button>
     <img id="user-icon" src="/user-icon.png" alt="image" />
+
     <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon id="menu-deroulant">menu</mat-icon>
     </button>
-    <mat-menu #menu="matMenu">
+
+    <mat-menu #menu="matMenu" xPosition="before">
+
       <button mat-menu-item (click)="logout()">
         <mat-icon>logout</mat-icon>
         <span>Se déconnecter</span>
       </button>
+
       <button mat-menu-item (click)="navigateToArticles()">
         <mat-icon>article</mat-icon>
         <span>Articles</span>
       </button>
+
       <button mat-menu-item (click)="navigateToThemes()">
         <mat-icon>category</mat-icon>
         <span>Thèmes</span>
       </button>
+
       <button mat-menu-item (click)="navigateToProfile()">
         <mat-icon>account_circle</mat-icon>
         <span>Profil utilisateur</span>
       </button>
+
     </mat-menu>
     
   </div>
