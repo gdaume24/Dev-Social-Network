@@ -1,17 +1,16 @@
 .container {
   display: flex;
   margin-top: 20px;
-  margin-left: 20px;
-  margin-right: 20px;
-  row-gap: 17px;
-  column-gap: 10px;
   flex-wrap: wrap;
   max-width: fit-content;
   overflow: hidden;
+  margin-left: 10px;
+  margin-right: 10px
 }
 .item {
-  width: calc(50% - 20px);
-  /* box-sizing: border-box; */
+  flex: 1 0 40%;
+  margin: 10px 3px;
+  box-sizing: border-box;
 }
 
 @media (max-width: 600px) {
