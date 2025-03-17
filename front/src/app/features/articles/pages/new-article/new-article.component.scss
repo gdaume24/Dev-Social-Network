@@ -1,8 +1,7 @@
 .container {
     display: flex;
-    width: 100%;
-    max-width: 100%;
     padding: 0 1rem;
+    max-width: fit-content;
 }
 mat-icon {
     padding-top: 2px;
