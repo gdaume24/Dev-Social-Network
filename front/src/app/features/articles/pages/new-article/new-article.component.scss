@@ -41,6 +41,7 @@ mat-icon {
     padding-left: 7px;
     font-size: 20px;
     margin-bottom: 1.5rem;
+    box-sizing: border-box;
     width: 100%; /* Prend toute la largeur disponible */
 }
 .input-content {

@@ -13,8 +13,8 @@ import { NgFor, NgIf } from '@angular/common';
   styleUrl: './new-article.component.scss'
 })
 export class NewArticleComponent {
-  showSuggestions = false;
   themes: Theme[] = [];
+  showSuggestions = false;
   selectedTheme: string = '';
 
   constructor(
@@ -25,7 +25,10 @@ export class NewArticleComponent {
   ngOnInit(): void {
     this.loadThemes();
   }
-  
+  selectTheme(theme: Theme): void {
+    this.selectedTheme = theme.name; // Met à jour le thème sélectionné
+    this.showSuggestions = false; // Ferme la liste déroulante
+  }
   loadThemes(): void {
     this.themeService.getAll().subscribe({
       next: (themes) => {
@@ -35,15 +38,5 @@ export class NewArticleComponent {
   }
   navigateBack() {
     this.router.navigate(['/articles']);
-  }
-  hideSuggestions(): void {
-    // Ajoute un délai pour permettre la sélection avant de cacher la liste
-    setTimeout(() => {
-      this.showSuggestions = false;
-    }, 200);
-  }
-  selectTheme(theme: Theme): void {
-    this.selectedTheme = theme.name; // Met à jour le thème sélectionné
-    this.showSuggestions = false; // Ferme la liste déroulante
   }
 }
