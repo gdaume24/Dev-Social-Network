@@ -5,9 +5,27 @@
     </button>
     <div class="sub-container">
         <p id="bold-text">Créer un nouvel article</p>
-        <input type="text" class="input" placeholder="Sélectionner un thème">
+        <input
+            type="text"
+            class="input"
+            placeholder="Sélectionner un thème"
+            (focus)="showSuggestions = true"
+            (blur)="hideSuggestions()"
+        />
         <!-- Liste des suggestions -->
-        <ul id="suggestionsList"></ul>
+        <ul
+            id="suggestionsList"
+            *ngIf="showSuggestions"
+            (mousedown)="$event.preventDefault()"
+        >
+            <li
+                *ngFor="let theme of themes"
+                (click)="selectTheme(theme)"
+                class="suggestion-item"
+            >
+                {{ theme.name }}
+            </li>
+        </ul>
         <input type="text" class="input" placeholder="Titre de l'article">
         <textarea type="text" class="input-content" placeholder="Contenu de l'article"></textarea>
         <button class="submit-button">Créer</button>
