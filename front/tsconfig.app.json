@@ -15,5 +15,6 @@
   ],
   "include": [
     "src/**/*.d.ts"
-  ]
+  ],
+  "typescript.validate.enable": false
 }

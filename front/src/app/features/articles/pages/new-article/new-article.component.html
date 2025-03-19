@@ -5,7 +5,8 @@
     </button>
     <div class="sub-container">
         <p id="bold-text">Créer un nouvel article</p>
-        <select class="input" placeholder="Sélectionner un thème" id="themes-id">
+        <select class="input" [style.color]="isClicked ? 'black' : 'grey'" (click)="isClicked = true">
+            <option value="">Sélectionner un thème</option>
             <option *ngFor="let theme of themes" value="{{theme.name}}">{{theme.name}}</option>
         </select>
         <input type="text" class="input" placeholder="Titre de l'article">

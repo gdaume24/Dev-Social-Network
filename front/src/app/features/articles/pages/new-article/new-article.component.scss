@@ -50,6 +50,9 @@ mat-icon {
     vertical-align: top;
     font-family: Roboto, "Inter", sans-serif;
 }
+select.input option[value=""] {
+    color: grey; /* Couleur grise pour l'option par défaut */
+}
 .submit-button {
     font-size: 18px;
     padding-top: 0.5rem;
