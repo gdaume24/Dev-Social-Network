@@ -18,7 +18,6 @@ import com.network.services.ArticleService;
 import jakarta.validation.Valid;
 
 @RestController
-@CrossOrigin
 @RequestMapping("/articles")
 public class ArticleController {
 

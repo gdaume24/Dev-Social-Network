@@ -25,6 +25,16 @@ mat-icon {
     max-width: 25rem;
     width: 100%
 }
+form {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    flex-grow: 1;
+    max-width: 25rem;
+    width: 100%
+}
 #bold-text {
     margin-bottom: 3.5rem;
     font-weight: 700;
@@ -32,8 +42,7 @@ mat-icon {
     align-self: center;
 }
 .input {
-    border-color: #7763c5;
-    border-width: 2px;
+    border: 2px solid #7763c5;
     border-radius: 5px;
     border-width: 2px;
     padding-top: 0.5rem;
@@ -65,6 +74,10 @@ select.input option[value=""] {
     cursor: pointer;
     align-self: center;
   }
+.submit-button:disabled {
+    background-color: #ccc; /* Couleur grise pour indiquer qu'il est désactivé */
+    cursor: not-allowed; /* Change le curseur pour indiquer qu'il est désactivé */
+}
 
 @media (max-width: 600px) {
     .container {

@@ -5,12 +5,14 @@
     </button>
     <div class="sub-container">
         <p id="bold-text">Créer un nouvel article</p>
-        <select class="input" [style.color]="isClicked ? 'black' : 'grey'" (click)="isClicked = true">
-            <option value="">Sélectionner un thème</option>
-            <option *ngFor="let theme of themes" value="{{theme.name}}">{{theme.name}}</option>
-        </select>
-        <input type="text" class="input" placeholder="Titre de l'article">
-        <textarea type="text" class="input-content" placeholder="Contenu de l'article"></textarea>
-        <button class="submit-button">Créer</button>
+        <form [formGroup]="formGroup" (ngSubmit)="createArticle()">
+            <select formControlName="theme" class="input" [style.color]="isClicked ? 'black' : 'grey'" (click)="isClicked = true">
+                <option value="">Sélectionner un thème</option>
+                <option *ngFor="let theme of themes" value="{{theme.name}}">{{theme.name}}</option>
+            </select>
+            <input formControlName="title" type="text" class="input" placeholder="Titre de l'article">
+            <textarea formControlName="content" type="text" class="input-content" placeholder="Contenu de l'article"></textarea>
+            <button class="submit-button" [disabled]="formGroup.invalid" type="submit" disabled>Créer</button>
+        </form>
     </div>
 </div>
