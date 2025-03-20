@@ -2,11 +2,10 @@ package com.network.models;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import io.micrometer.common.lang.NonNull;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -44,7 +43,8 @@ public class Article {
   private String author;
 
   @NonNull
-    private String content;
+  @Column( length = 100000 )
+  private String content;
 
   @NonNull
   @Temporal(TemporalType.TIMESTAMP)
