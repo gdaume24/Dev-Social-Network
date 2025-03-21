@@ -15,6 +15,10 @@ export class ArticleService {
               private authService: AuthService
   ) {}
 
+  all(): Observable<any> {
+    return this.http.get(`${this.apiUrl}`);
+  }
+
   createArticle(article: ArticleRequest): Observable<any> {
     return this.authService.me().pipe(
           switchMap((user) => {

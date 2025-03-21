@@ -49,8 +49,8 @@ export class NewArticleComponent {
     const articleRequest = this.formGroup.value as ArticleRequest;
     this.articleService.createArticle(articleRequest).subscribe({
       next: () => {
+        this.router.navigate(['/articles']);
         alert('Article créé avec succès !');
-        this.router.navigate(['/articles']); // Redirige vers la liste des articles
       },
       error: (err) => {
         console.error('Erreur lors de la création de l\'article :', err);

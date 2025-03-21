@@ -18,6 +18,7 @@ import com.network.services.ArticleService;
 import jakarta.validation.Valid;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/articles")
 public class ArticleController {
 
@@ -27,6 +28,11 @@ public class ArticleController {
     public ArticleController(ArticleMapper articleMapper, ArticleService articleService) {
         this.articleMapper = articleMapper;
         this.articleService = articleService;
+    }
+
+    @GetMapping
+    public ResponseEntity<?> getAllArticles() {
+        return ResponseEntity.ok().body(this.articleMapper.toDto(articleService.getAllArticles()));
     }
 
     @PostMapping("/create/{userId}")

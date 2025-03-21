@@ -12,11 +12,9 @@ export class JwtInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler) {
     const authExcludedEndpoints = ['/api/auth/register', '/api/auth/login'];
-    const myUrl = request.url;
     if (authExcludedEndpoints.some((url) => request.url.includes(url))) {
       return next.handle(request);
     }
-
     if (isPlatformBrowser(this.platformId)) {
       const token = localStorage.getItem('token');
       if (token) {
@@ -26,8 +24,10 @@ export class JwtInterceptor implements HttpInterceptor {
             Authorization: `Bearer ${token}`,
           },
         });
-      }
-    }
+      }}
     return next.handle(request);
   }
 }
+
+
+

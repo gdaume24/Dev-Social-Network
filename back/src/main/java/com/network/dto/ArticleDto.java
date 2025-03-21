@@ -15,5 +15,5 @@ import lombok.NoArgsConstructor;
 public class ArticleDto {
     private String title;
     private String content;
-    private Set<Theme> themes;
+    private Set<Theme> theme;
 }

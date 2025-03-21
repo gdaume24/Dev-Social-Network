@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ArticleComponent } from '../../components/article/article.component';
 import { BanneerConnectedComponent } from '../../../../shared/banneer-connected/banneer-connected.component';
 import { Router } from '@angular/router';
+import { ArticleService } from '../../service/article.service';
 
 @Component({
   selector: 'app-articles',
@@ -11,7 +12,17 @@ import { Router } from '@angular/router';
 })
 export class ArticlesComponent {
 
-  constructor(private router: Router) {}
+  articleService = inject(ArticleService);
+  articles = [];
+
+  constructor(private router: Router,
+  ) {}
+
+  ngOnInit() {
+    this.articleService.all().subscribe((articles) => {
+      this.articles = articles
+    })
+  }
 
   goToCreateArticle() {
     this.router.navigate(['/new-article']);

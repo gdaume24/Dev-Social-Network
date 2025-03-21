@@ -1,6 +1,7 @@
 package com.network.services;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,10 @@ public class ArticleService {
         this.userRepository = userRepository;
         this.commentRepository = commentRepository;
     }    
+
+    public List<Article> getAllArticles() {
+        return articleRepository.findAll();
+    }
 
     public Article createArticle(Long userId, Article article) {
         // Ajouter id, date et author
