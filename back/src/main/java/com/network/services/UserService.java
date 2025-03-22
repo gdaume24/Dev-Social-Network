@@ -14,6 +14,7 @@ import com.network.mapper.UserMapper;
 import com.network.models.Article;
 import com.network.models.Theme;
 import com.network.models.User;
+import com.network.repository.ArticleRepository;
 import com.network.repository.ThemeRepository;
 import com.network.repository.UserRepository;
 
@@ -26,11 +27,13 @@ public class UserService {
     private final UserRepository userRepository;
     private final ThemeRepository themeRepository;
     private final UserMapper userMapper;
+    private final ArticleRepository articleRepository;
 
-    public UserService(UserRepository userRepository, ThemeRepository themeRepository, UserMapper userMapper) {
+    public UserService(UserRepository userRepository, ThemeRepository themeRepository, UserMapper userMapper, ArticleRepository articleRepository) {
         this.userRepository = userRepository;
         this.themeRepository = themeRepository;
         this.userMapper = userMapper;
+        this.articleRepository = articleRepository;
     }
 
     public User createUser(String email, String userName, String password) {
@@ -81,12 +84,11 @@ public class UserService {
         
         User user = userRepository.findById(userId).orElseThrow();
 
-        // Récupère la liste des articles des thèmes auxquels l'utilisateur est abonné, puis la trie du plus récent au plus anciens
-        List<Article> filtredArticleList = user.getThemes().stream()
-            .flatMap(theme -> theme.getArticles().stream())
-            .distinct()
-            .sorted(Comparator.comparing(Article::getDate).reversed())
-            .collect(Collectors.toList());
+        // Récupère la liste des articles des thèmes auxquels l'utilisateur est abonné
+        List<Theme> subscribedThemes = user.getThemes();
+        List<Article> filtredArticleList = articleRepository.findByThemeIn(subscribedThemes);
+        // Trie les articles du plus récent au plus ancien
+        filtredArticleList.sort(Comparator.comparing(Article::getDate).reversed());
 
         return filtredArticleList;
         

@@ -1,5 +1,6 @@
 package com.network.dto;
 
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
@@ -18,6 +19,6 @@ public class UserDto {
     private Long id;
     private String email;
     private String userName;
-    private Set<ThemeDto> themes = new CopyOnWriteArraySet<>();
+    private List<ThemeDto> themes;
     
 }

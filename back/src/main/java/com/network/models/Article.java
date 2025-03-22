@@ -55,14 +55,9 @@ public class Article {
   private User user;
 
   /**
-   * The article belongs to one or many themes
+   * The article belongs to one and one theme
   */
-  @ManyToMany
-  @JoinTable(
-          name = "article_themes", // Nom de la table intermédiaire
-          joinColumns = @JoinColumn(name = "article_id"), // Clé étrangère vers Articles
-          inverseJoinColumns = @JoinColumn(name = "theme_id") // Clé étrangère vers Theme
-  )
-  @Builder.Default
-  private List<Theme> themes = new ArrayList<>();
+  @ManyToOne
+  @JoinColumn(name = "theme_id", nullable = false) // Clé étrangère vers Theme
+  private Theme theme;
 }

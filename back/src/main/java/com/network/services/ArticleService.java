@@ -9,8 +9,10 @@ import com.network.dto.CommentDto;
 import com.network.models.Article;
 import com.network.models.Comment;
 import com.network.models.User;
+import com.network.payload.request.ArticleRequest;
 import com.network.repository.ArticleRepository;
 import com.network.repository.CommentRepository;
+import com.network.repository.ThemeRepository;
 import com.network.repository.UserRepository;
 
 @Service
@@ -19,24 +21,32 @@ public class ArticleService {
     private ArticleRepository articleRepository;
     private UserRepository userRepository;
     private CommentRepository commentRepository;
+    private ThemeRepository themeRepository;
 
-    public ArticleService(ArticleRepository articleRepository, UserRepository userRepository, CommentRepository commentRepository) {
+    public ArticleService(ArticleRepository articleRepository, UserRepository userRepository, CommentRepository commentRepository, ThemeRepository themeRepository) {
         this.articleRepository = articleRepository;
         this.userRepository = userRepository;
         this.commentRepository = commentRepository;
+        this.themeRepository = themeRepository;
     }    
 
     public List<Article> getAllArticles() {
         return articleRepository.findAll();
     }
 
-    public Article createArticle(Long userId, Article article) {
-        // Ajouter id, date et author
+    public Article createArticle(Long userId, ArticleRequest articleRequest) {
+        
+        Article article = new Article();
+        article.setTitle(articleRequest.getTitle());
+        // Ajoute le nom de l'auteur
         User user = userRepository.findById(userId).orElseThrow();
-        article.setUser(user);
         article.setAuthor(user.getUserName());
+        article.setContent(articleRequest.getContent());
         article.setDate(new Timestamp(System.currentTimeMillis()));
+        article.setUser(user);
+        article.setTheme(themeRepository.findByName(articleRequest.getTheme()));
         Article savedArticle = articleRepository.save(article);
+        
         return savedArticle;
     }
 

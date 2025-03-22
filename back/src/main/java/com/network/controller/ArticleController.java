@@ -13,6 +13,7 @@ import com.network.dto.ArticleDto;
 import com.network.dto.CommentDto;
 import com.network.mapper.ArticleMapper;
 import com.network.models.Article;
+import com.network.payload.request.ArticleRequest;
 import com.network.services.ArticleService;
 
 import jakarta.validation.Valid;
@@ -32,12 +33,14 @@ public class ArticleController {
 
     @GetMapping
     public ResponseEntity<?> getAllArticles() {
-        return ResponseEntity.ok().body(this.articleMapper.toDto(articleService.getAllArticles()));
+        return ResponseEntity.ok().body(articleService.getAllArticles().stream()
+                .map(articleMapper::toDto)
+                .toList());
     }
 
     @PostMapping("/create/{userId}")
-    public ResponseEntity<?> createArticle(@PathVariable String userId, @Valid @RequestBody ArticleDto articleDto) {
-        Article article = articleService.createArticle(Long.parseLong(userId), this.articleMapper.toEntity(articleDto));
+    public ResponseEntity<?> createArticle(@PathVariable String userId, @Valid @RequestBody ArticleRequest articleRequest) {
+        Article article = articleService.createArticle(Long.parseLong(userId), articleRequest);
         return ResponseEntity.ok().body(this.articleMapper.toDto(article));
     }
 

@@ -1,8 +1,4 @@
-package com.network.dto;
-
-import java.sql.Timestamp;
-
-import com.network.models.Theme;
+package com.network.payload.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,11 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ArticleDto {
-    private Long id;
+public class ArticleRequest {
     private String title;
-    private String author;
     private String content;
-    private Timestamp date;
     private String theme;
 }
