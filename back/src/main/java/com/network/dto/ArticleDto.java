@@ -1,9 +1,6 @@
 package com.network.dto;
 
 import java.sql.Timestamp;
-
-import com.network.models.Theme;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, switchMap } from 'rxjs';
 import { AuthService } from '../../auth/services/auth.service';
 import { ArticleRequest } from '../interface/articleRequest.interface';
+import { Article } from '../interface/article.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class ArticleService {
   ) {}
 
   all(): Observable<any> {
-    return this.http.get(`${this.apiUrl}`);
+    return this.http.get<Article[]>(`${this.apiUrl}/subscribed`);
   }
 
   createArticle(article: ArticleRequest): Observable<any> {

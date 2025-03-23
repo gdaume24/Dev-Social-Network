@@ -1,6 +1,7 @@
 package com.network.services;
 
 import java.sql.Timestamp;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.network.dto.CommentDto;
 import com.network.models.Article;
 import com.network.models.Comment;
+import com.network.models.Theme;
 import com.network.models.User;
 import com.network.payload.request.ArticleRequest;
 import com.network.repository.ArticleRepository;
@@ -22,16 +24,31 @@ public class ArticleService {
     private UserRepository userRepository;
     private CommentRepository commentRepository;
     private ThemeRepository themeRepository;
+    private UserService userService;
 
-    public ArticleService(ArticleRepository articleRepository, UserRepository userRepository, CommentRepository commentRepository, ThemeRepository themeRepository) {
+    public ArticleService(ArticleRepository articleRepository, UserRepository userRepository, CommentRepository commentRepository, ThemeRepository themeRepository, UserService userService) {
         this.articleRepository = articleRepository;
+        this.userService = userService;
         this.userRepository = userRepository;
         this.commentRepository = commentRepository;
         this.themeRepository = themeRepository;
     }    
 
-    public List<Article> getAllArticles() {
-        return articleRepository.findAll();
+    // public List<Article> getAllArticles() {
+    //     return articleRepository.findAll();
+    // }
+
+    public List<Article> getSubscribedArticles() {
+        
+        User user = userService.getAuthenticatedUser();
+
+        // Récupère la liste des articles des thèmes auxquels l'utilisateur est abonné
+        List<Theme> subscribedThemes = user.getThemes();
+        List<Article> filtredArticleList = articleRepository.findByThemeIn(subscribedThemes);
+        // Trie les articles du plus récent au plus ancien
+        filtredArticleList.sort(Comparator.comparing(Article::getDate).reversed());
+
+        return filtredArticleList;
     }
 
     public Article createArticle(Long userId, ArticleRequest articleRequest) {

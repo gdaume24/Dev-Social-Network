@@ -1,2 +1,20 @@
 <app-banneer-connected></app-banneer-connected>
-<button class="creer_article_button" (click)="goToCreateArticle()">Créer un article</button>
+<div class="header-buttons">
+  <button class="creer_article_button" (click)="goToCreateArticle()">Créer un article</button>
+  <button class="trier_button">
+    Trier par <img src="/icons8-flèche-bas-50.png" class="arrow-icon">
+  </button>
+</div>
+
+
+<div class="articles-container">
+    <div class="article-card" *ngFor="let article of articles">
+      <h3 class="article-title">{{ article.title }}</h3>
+      <p class="article-meta">
+        {{ article.date }} - {{ article.author }}
+      </p>
+      <p class="article-content">
+        {{ article.content }}
+      </p>
+    </div>
+</div>

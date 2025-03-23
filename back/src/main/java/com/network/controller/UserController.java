@@ -34,12 +34,10 @@ public class UserController {
 
     private final UserService userService;
     private final UserMapper userMapper;
-    private final ArticleMapper articleMapper;
 
-    public UserController(UserService userService, UserMapper userMapper, ArticleMapper articleMapper) {
+    public UserController(UserService userService, UserMapper userMapper) {
         this.userService = userService;
         this.userMapper = userMapper;
-        this.articleMapper = articleMapper;
     }
 
     @GetMapping("/{id}")
@@ -77,11 +75,5 @@ public class UserController {
     public ResponseEntity<Boolean> isSubscribedToTheme(@PathVariable Long userId, @PathVariable Long themeId) {
         boolean isSubscribed = userService.isSubscribedToTheme(userId, themeId);
         return ResponseEntity.ok(isSubscribed);
-    }
-
-    @GetMapping("{userId}/articles")
-    public ResponseEntity<?> getSubscribedArticles(@PathVariable String userId) {
-        List<Article> articleList  = userService.getSubscribedArticles(Long.parseLong(userId));
-        return ResponseEntity.ok().body(articleMapper.toDto(articleList));
     }
 }

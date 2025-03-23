@@ -1,5 +1,7 @@
 package com.network.controller;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.network.dto.ArticleDto;
 import com.network.dto.CommentDto;
 import com.network.mapper.ArticleMapper;
 import com.network.models.Article;
@@ -31,9 +32,17 @@ public class ArticleController {
         this.articleService = articleService;
     }
 
-    @GetMapping
-    public ResponseEntity<?> getAllArticles() {
-        return ResponseEntity.ok().body(articleService.getAllArticles().stream()
+    // @GetMapping
+    // public ResponseEntity<?> getAllArticles() {
+    //     return ResponseEntity.ok().body(articleService.getAllArticles().stream()
+    //             .map(articleMapper::toDto)
+    //             .toList());
+    // }
+
+    @GetMapping("/subscribed")
+    public ResponseEntity<?> getSubscribedArticles() {
+        List<Article> articleList  = articleService.getSubscribedArticles();
+        return ResponseEntity.ok().body(articleList.stream()
                 .map(articleMapper::toDto)
                 .toList());
     }

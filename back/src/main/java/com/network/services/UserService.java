@@ -27,13 +27,11 @@ public class UserService {
     private final UserRepository userRepository;
     private final ThemeRepository themeRepository;
     private final UserMapper userMapper;
-    private final ArticleRepository articleRepository;
 
-    public UserService(UserRepository userRepository, ThemeRepository themeRepository, UserMapper userMapper, ArticleRepository articleRepository) {
+    public UserService(UserRepository userRepository, ThemeRepository themeRepository, UserMapper userMapper) {
         this.userRepository = userRepository;
         this.themeRepository = themeRepository;
         this.userMapper = userMapper;
-        this.articleRepository = articleRepository;
     }
 
     public User createUser(String email, String userName, String password) {
@@ -80,28 +78,11 @@ public class UserService {
         return user.getThemes().stream().anyMatch(theme -> theme.getId().equals(themeId));
     }
 
-    public List<Article> getSubscribedArticles(Long userId) {
-        
-        User user = userRepository.findById(userId).orElseThrow();
-
-        // Récupère la liste des articles des thèmes auxquels l'utilisateur est abonné
-        List<Theme> subscribedThemes = user.getThemes();
-        List<Article> filtredArticleList = articleRepository.findByThemeIn(subscribedThemes);
-        // Trie les articles du plus récent au plus ancien
-        filtredArticleList.sort(Comparator.comparing(Article::getDate).reversed());
-
-        return filtredArticleList;
-        
-    }
-
-        public User getAuthenticatedUser() {
-
+    public User getAuthenticatedUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null && authentication.getPrincipal() instanceof User) {
-            User currentUser = (User) authentication.getPrincipal();
-            return currentUser;
+            return (User) authentication.getPrincipal();
         }
-
         throw new RuntimeException("Utilisateur non authentifié");
     }
 
