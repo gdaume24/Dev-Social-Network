@@ -5,12 +5,13 @@ import lombok.experimental.Accessors;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -62,6 +63,7 @@ public class User implements UserDetails{
     inverseJoinColumns = @JoinColumn(name = "theme_id")
   )
   @Builder.Default
+  @ToString.Exclude
   private List<Theme> themes = new ArrayList<>();
 
     @Override

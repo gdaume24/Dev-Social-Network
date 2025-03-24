@@ -1,8 +1,6 @@
 package com.network.dto;
 
 import java.util.List;
-import java.util.Set;
-import java.util.concurrent.CopyOnWriteArraySet;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

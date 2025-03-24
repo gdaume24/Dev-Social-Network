@@ -3,7 +3,6 @@ package com.network.controller;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,7 +36,7 @@ public class ThemeController {
         this.userMapper = userMapper;
     }
 
-    @GetMapping
+    @GetMapping("")
     public ResponseEntity<?> findAllThemes() {
         List<Theme> themes = themeService.findAllThemes();
         System.out.println("Themes fetched: " + themes); 

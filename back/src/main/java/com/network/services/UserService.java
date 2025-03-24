@@ -14,6 +14,8 @@ import com.network.models.User;
 import com.network.repository.ThemeRepository;
 import com.network.repository.UserRepository;
 
+import jakarta.transaction.Transactional;
+
 /**
  * Service for user operations
  */

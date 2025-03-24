@@ -3,6 +3,9 @@ package com.network.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,6 +16,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
 /**
@@ -42,5 +46,6 @@ public class Theme {
      */
     @ManyToMany(mappedBy = "themes") // Relation inverse
     @Builder.Default
+    @ToString.Exclude
     private List<User> users = new ArrayList<>();
 }
