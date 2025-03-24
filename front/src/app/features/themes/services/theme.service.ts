@@ -10,12 +10,11 @@ import { AuthService } from '../../auth/services/auth.service';
 export class ThemeService {
   private httpClient = inject(HttpClient);
   private authService = inject(AuthService);
-  private pathService = 'api/users';
-  private pathThemeService = 'api/themes';
+  private pathService = 'api/themes';
   themes = signal<Theme[]>([]);
   public getAll(): Observable<Theme[]> {
     return this.httpClient
-      .get<Theme[]>('api/themes')
+      .get<Theme[]>(`${this.pathService}`)
       .pipe(tap((themes) => this.themes.set(themes)));
   }
 
@@ -24,7 +23,7 @@ export class ThemeService {
       switchMap((user) => {
         const userId = user.id;
         return this.httpClient.post(
-          `${this.pathService}/${userId}/subscribe/${themeId}`,
+          `${this.pathService}/subscribe/${themeId}`,
           {}
         );
       })
@@ -36,7 +35,7 @@ export class ThemeService {
       switchMap((user) => {
         const userId = user.id;
         return this.httpClient.delete(
-          `${this.pathService}/${userId}/unsubscribe/${themeId}`,
+          `${this.pathService}/unsubscribe/${themeId}`,
           {}
         );
       })
@@ -48,7 +47,7 @@ export class ThemeService {
       switchMap((user) => {
         const userId = user.id;
         return this.httpClient.get<boolean>(
-          `${this.pathService}/${userId}/isSubscribed/${themeId}`
+          `${this.pathService}/isSubscribed/${themeId}`
         );
       })
     );

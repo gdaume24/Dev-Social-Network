@@ -11,9 +11,15 @@ export class JwtInterceptor implements HttpInterceptor {
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler) {
-    const authExcludedEndpoints = ['/api/auth/register', '/api/auth/login'];
-    if (authExcludedEndpoints.some((url) => request.url.includes(url))) {
-      return next.handle(request);
+    const authExcludedEndpoints = ['api/auth/register', 'api/auth/login'];
+    const isExcluded = authExcludedEndpoints.some(
+      (url) => request.url.endsWith(url) // Use endsWith to match the exact endpoint
+    );
+    console.log('Is Excluded:', isExcluded);
+    console.log('Request URL:', request.url);
+    if (isExcluded) {
+      console.log('********** Excluded **********');
+      return next.handle(request); // Skip adding the Authorization header
     }
     if (isPlatformBrowser(this.platformId)) {
       const token = localStorage.getItem('token');
@@ -24,10 +30,8 @@ export class JwtInterceptor implements HttpInterceptor {
             Authorization: `Bearer ${token}`,
           },
         });
-      }}
+      }
+    }
     return next.handle(request);
   }
 }
-
-
-
