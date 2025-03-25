@@ -1,8 +1,6 @@
 package com.network.models;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
 
 import io.micrometer.common.lang.NonNull;
 import jakarta.persistence.Column;
@@ -11,8 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -43,6 +40,7 @@ public class Article {
   private String author;
 
   @NonNull
+  @Lob
   @Column( length = 100000 )
   private String content;
 

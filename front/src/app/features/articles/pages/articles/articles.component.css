@@ -38,17 +38,19 @@
   /* Conteneur principal des articles */
 .articles-container {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
-  margin: 20px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 20px;
+  column-gap: 50px;
+  margin: 25px;
 }
 
 /* Carte pour chaque article */
-.article-card {
+.article {
   background-color: #f0f0f0; /* Couleur grise */
   border-radius: 10px; /* Bords arrondis */
   padding: 15px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Légère ombre */
+  flex: 1 0 40%;
 }
 
 /* Titre de l'article */
