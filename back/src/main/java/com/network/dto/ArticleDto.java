@@ -1,6 +1,7 @@
 package com.network.dto;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,6 @@ public class ArticleDto {
     private String title;
     private String author;
     private String content;
-    private Timestamp date;
+    private LocalDateTime date;
     private String theme;
 }

@@ -1,6 +1,5 @@
 package com.network.models;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 import io.micrometer.common.lang.NonNull;
@@ -12,8 +11,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

@@ -1,6 +1,7 @@
 package com.network.services;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
 
@@ -34,10 +35,6 @@ public class ArticleService {
         this.themeRepository = themeRepository;
     }    
 
-    // public List<Article> getAllArticles() {
-    //     return articleRepository.findAll();
-    // }
-
     public List<Article> getSubscribedArticles() {
         
         User user = userService.getAuthenticatedUser();
@@ -59,7 +56,7 @@ public class ArticleService {
         User user = userRepository.findById(userId).orElseThrow();
         article.setAuthor(user.getUserName());
         article.setContent(articleRequest.getContent());
-        article.setDate(new Timestamp(System.currentTimeMillis()));
+        article.setDate(LocalDateTime.now());
         article.setUser(user);
         article.setTheme(themeRepository.findByName(articleRequest.getTheme()));
         Article savedArticle = articleRepository.save(article);
@@ -80,7 +77,7 @@ public class ArticleService {
         comment.setArticle(article);
         comment.setUser(user);
         article.setAuthor(user.getUserName());
-        article.setDate(new Timestamp(System.currentTimeMillis()));
+        article.setDate(LocalDateTime.now());
 
         return commentRepository.save(comment);
     }
