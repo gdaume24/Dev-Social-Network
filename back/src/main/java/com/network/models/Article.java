@@ -1,6 +1,7 @@
 package com.network.models;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import io.micrometer.common.lang.NonNull;
 import jakarta.persistence.Column;
@@ -45,8 +46,7 @@ public class Article {
   private String content;
 
   @NonNull
-  @Temporal(TemporalType.TIMESTAMP)
-  private Timestamp date;
+  private LocalDateTime date;
 
   @ManyToOne
   @JoinColumn(name = "user_id", nullable = false)

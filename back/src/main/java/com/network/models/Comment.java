@@ -1,6 +1,7 @@
 package com.network.models;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import io.micrometer.common.lang.NonNull;
 import jakarta.persistence.Entity;
@@ -36,8 +37,7 @@ public class Comment {
     private String content;
 
     @NonNull
-    @Temporal(TemporalType.TIMESTAMP)
-    private Timestamp date;
+    private LocalDateTime date;
 
     @NonNull
     private String author;

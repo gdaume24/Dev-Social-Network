@@ -4,7 +4,7 @@ import { BanneerConnectedComponent } from '../../../../shared/banneer-connected/
 import { Router } from '@angular/router';
 import { ArticleService } from '../../service/article.service';
 import { Article } from '../../interface/article.interface';
-import { NgFor } from '@angular/common';
+import { NgFor, DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-articles',
@@ -22,9 +22,13 @@ export class ArticlesComponent {
 
   ngOnInit() {
     this.articleService.all().subscribe((articles) => {
-      this.articles = articles
-    })
-  }
+      this.articles = articles.map((article: Article) => ({
+        ...article,
+        date: new Date(article.date) // Convertit la chaîne en objet Date
+      }))
+      console.log(this.articles);
+    });
+  };
 
   goToCreateArticle() {
     this.router.navigate(['/new-article']);

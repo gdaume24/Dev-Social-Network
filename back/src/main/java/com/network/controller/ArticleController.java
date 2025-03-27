@@ -32,13 +32,6 @@ public class ArticleController {
         this.articleService = articleService;
     }
 
-    // @GetMapping
-    // public ResponseEntity<?> getAllArticles() {
-    //     return ResponseEntity.ok().body(articleService.getAllArticles().stream()
-    //             .map(articleMapper::toDto)
-    //             .toList());
-    // }
-
     @GetMapping("/subscribed")
     public ResponseEntity<?> getSubscribedArticles() {
         List<Article> articleList  = articleService.getSubscribedArticles();
