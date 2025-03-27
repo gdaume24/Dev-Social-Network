@@ -6,14 +6,24 @@ import { Theme } from '../../../themes/interfaces/theme.interface';
 import { ThemeService } from '../../../themes/services/theme.service';
 import { NgFor, NgIf, NgStyle } from '@angular/common';
 import { ArticleService } from '../../service/article.service';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { ArticleRequest } from '../../interface/articleRequest.interface';
 
 @Component({
   selector: 'app-new-article',
-  imports: [MatIconModule, BanneerConnectedComponent, NgFor, NgIf, NgStyle, ReactiveFormsModule],
+  imports: [
+    MatIconModule,
+    BanneerConnectedComponent,
+    NgFor,
+    ReactiveFormsModule,
+  ],
   templateUrl: './new-article.component.html',
-  styleUrls: ['./new-article.component.scss']
+  styleUrls: ['./new-article.component.scss'],
 })
 export class NewArticleComponent {
   themes: Theme[] = [];
@@ -21,11 +31,10 @@ export class NewArticleComponent {
   selectedTheme = '';
   title = '';
   content = '';
-  formGroup = new FormGroup
-  ({
-      theme: new FormControl('', [Validators.required]),
-      title: new FormControl('', [Validators.required]),
-      content: new FormControl('', [Validators.required]),
+  formGroup = new FormGroup({
+    theme: new FormControl('', [Validators.required]),
+    title: new FormControl('', [Validators.required]),
+    content: new FormControl('', [Validators.required]),
   });
 
   constructor(
@@ -41,7 +50,7 @@ export class NewArticleComponent {
     this.themeService.getAll().subscribe({
       next: (themes) => {
         this.themes = themes; // Updates the list of themes
-      }
+      },
     });
   }
   createArticle(): void {
@@ -53,8 +62,8 @@ export class NewArticleComponent {
         alert('Article créé avec succès !');
       },
       error: (err) => {
-        console.error('Erreur lors de la création de l\'article :', err);
-        alert('Une erreur est survenue lors de la création de l\'article.');
+        console.error("Erreur lors de la création de l'article :", err);
+        alert("Une erreur est survenue lors de la création de l'article.");
       },
     });
   }

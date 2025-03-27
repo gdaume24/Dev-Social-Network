@@ -1,14 +1,18 @@
 <div class="banner">
   <img id="logo" src="/icone.png" alt="image" />
   <div class="menu">
-    <button (click)="logout()">
+    <button class="large-display-buttons" (click)="logout()">
       <p class="disconnect-text">Se déconnecter</p>
     </button>
-    <button (click)="navigateToArticles()">
+    <button class="large-display-buttons" (click)="navigateToArticles()">
       <p [class.purple-text]="articleRoute">Articles</p>
     </button>
-    <button (click)="navigateToThemes()" id="theme_button">
-      <p id="themes" [class.purple-text]="themeRoute">Thèmes</p>
+    <button
+      class="large-display-buttons"
+      (click)="navigateToThemes()"
+      id="theme_button"
+    >
+      <p [class.purple-text]="themeRoute">Thèmes</p>
     </button>
     <img id="user-icon" src="/user-icon.png" alt="image" />
 
@@ -17,7 +21,6 @@
     </button>
 
     <mat-menu #menu="matMenu" xPosition="before">
-
       <button mat-menu-item (click)="logout()">
         <mat-icon>logout</mat-icon>
         <span>Se déconnecter</span>
@@ -37,8 +40,6 @@
         <mat-icon>account_circle</mat-icon>
         <span>Profil utilisateur</span>
       </button>
-
     </mat-menu>
-    
   </div>
 </div>

@@ -8,27 +8,25 @@ import { NgFor, DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-articles',
-  imports: [BanneerConnectedComponent, ArticleComponent, NgFor],
+  imports: [BanneerConnectedComponent, NgFor],
   templateUrl: './articles.component.html',
-  styleUrl: './articles.component.css'
+  styleUrl: './articles.component.css',
 })
 export class ArticlesComponent {
-
   articleService = inject(ArticleService);
   articles: Article[] = [];
 
-  constructor(private router: Router,
-  ) {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.articleService.all().subscribe((articles) => {
       this.articles = articles.map((article: Article) => ({
         ...article,
-        date: new Date(article.date) // Convertit la chaîne en objet Date
-      }))
+        date: new Date(article.date), // Convertit la chaîne en objet Date
+      }));
       console.log(this.articles);
     });
-  };
+  }
 
   goToCreateArticle() {
     this.router.navigate(['/new-article']);
