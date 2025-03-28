@@ -18,8 +18,14 @@
   flex-grow: 1;
 }
 .large-display-buttons {
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  height: 40px;
+  justify-content: center;
+  height: 100%;
+}
+.large-display-buttons p {
+  margin-bottom: 0; /* Enlève la marge par défaut */
 }
 button {
   padding-left: 1rem;

@@ -4,11 +4,11 @@ import { BanneerConnectedComponent } from '../../../../shared/banneer-connected/
 import { Router } from '@angular/router';
 import { ArticleService } from '../../service/article.service';
 import { Article } from '../../interface/article.interface';
-import { NgFor, DatePipe } from '@angular/common';
+import { NgFor, DatePipe, CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-articles',
-  imports: [BanneerConnectedComponent, NgFor],
+  imports: [BanneerConnectedComponent, NgFor, CommonModule],
   templateUrl: './articles.component.html',
   styleUrl: './articles.component.css',
 })
@@ -24,7 +24,7 @@ export class ArticlesComponent {
         ...article,
         date: new Date(article.date), // Convertit la chaîne en objet Date
       }));
-      console.log(this.articles);
+      console.log("date is of type : ",  this.articles[0].date instanceof Date); // Affiche la date de l'article
     });
   }
 

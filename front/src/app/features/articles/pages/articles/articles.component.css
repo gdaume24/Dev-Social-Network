@@ -32,7 +32,8 @@
 .arrow_icon {
   height: 18px;
   position: relative;
-  top: 1px;
+  bottom: 1px;
+  left: 3px;
 }
 
   /* Conteneur principal des articles */
@@ -64,7 +65,12 @@
 .article-meta {
   font-size: 14px;
   color: #666;
-  margin: 5px 0;
+  margin: 15px 0;
+  display: flex;
+}
+
+.date {
+  margin-right: 10em; /* Ajoute un espace de 10px après la date */
 }
 
 /* Contenu de l'article */
@@ -77,3 +83,4 @@
   overflow: hidden;
   text-overflow: ellipsis; /* Ajoute des "..." si le texte dépasse */
 }
+

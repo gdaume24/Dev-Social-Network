@@ -11,7 +11,15 @@
 <div class="articles-container">
   <div class="article" *ngFor="let article of articles">
     <h3 class="article-title">{{ article.title }}</h3>
-    <p class="article-meta">{{ article.date }} - {{ article.author }}</p>
+    <p class="article-meta">
+      <span class="date">
+        {{ article.date | date:'short' }}
+      </span>      
+      <span class="author">
+        {{ article.author }} 
+      </span>
+    </p>
+    <!-- {{ article.author }} -->
     <p class="article-content">
       {{ article.content }}
     </p>
