@@ -84,3 +84,12 @@
   text-overflow: ellipsis; /* Ajoute des "..." si le texte dépasse */
 }
 
+@media (max-width: 600px) {
+  .header_buttons {
+    flex-direction: column;
+  }
+  .trier_button {
+    margin-right: 0em;
+    margin-left: 1.5em;
+  }
+}

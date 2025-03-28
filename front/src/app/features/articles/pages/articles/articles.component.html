@@ -3,9 +3,27 @@
   <button class="creer_article_button" (click)="goToCreateArticle()">
     Créer un article
   </button>
-  <button class="trier_button">
-    Trier par <img src="/icons8-flèche-bas-50.png" class="arrow_icon" />
+  <button class="trier_button" (click)="toggleDropdown()">
+    Trier par <img src="/icons8-flèche-bas-50.png" class="arrow_icon" [class.rotate]="isDropdownOpen"/>
   </button>
+  <div class="dropdown-content" id="myDropdown">
+    <a href="#">Link 1</a>
+    <a href="#">Link 2</a>
+    <a href="#">Link 3</a>
+  </div>
+
+  <div class="dropdown-content" *ngIf="isDropdownOpen">
+    <button (click)="sortBy('date')">Date 
+      <span *ngIf="currentSort === 'date'">
+        {{ sortAscending ? '↑' : '↓' }}
+      </span>
+    </button>
+    <button (click)="sortBy('titre')">Titre 
+      <span *ngIf="currentSort === 'titre'">
+        {{ sortAscending ? '↑' : '↓' }}
+      </span>
+    </button>
+  </div>
 </div>
 
 <div class="articles-container">
@@ -19,7 +37,6 @@
         {{ article.author }} 
       </span>
     </p>
-    <!-- {{ article.author }} -->
     <p class="article-content">
       {{ article.content }}
     </p>
