@@ -19,14 +19,15 @@
     margin-top: 1.5em;
   }
 
-.trier_button {
-  margin-top: 1.5em;
+.trier-par-container {
+  margin-top: 1.8em;
   margin-right: 4em;
   background-color: white;
-  border: none;
+  padding: 10px;
   cursor: pointer;
   font-size: 18px;
   font-weight: bold;
+  border-radius: 5px;
 }
 
 .arrow_icon {
@@ -88,8 +89,9 @@
   .header_buttons {
     flex-direction: column;
   }
-  .trier_button {
-    margin-right: 0em;
-    margin-left: 1.5em;
+  .trier-par-container {
+    text-align: center;
+    margin-right: 0;
+    margin-left: 1em;
   }
 }

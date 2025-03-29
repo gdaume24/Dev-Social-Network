@@ -14,10 +14,13 @@ import { NgFor, CommonModule, NgIf } from '@angular/common';
 export class ArticlesComponent {
   articleService = inject(ArticleService);
   articles: Article[] = [];
+
+  isDropdownOpen = false; // État du menu déroulant
+
   sortOptions = ['date', 'titre']; // Options de tri
   currentSort: string | null = null;
   sortAscending = true; // Indique si le tri est croissant ou décroissant
-  isDropdownOpen = false; // État du menu déroulant
+  
 
   constructor(private router: Router) {}
 
@@ -27,13 +30,13 @@ export class ArticlesComponent {
         ...article,
         date: new Date(article.date), // Convertit la chaîne en objet Date
       }));
-      console.log("date is of type : ",  this.articles[0].date instanceof Date); // Affiche la date de l'article
     });
   }
 
   goToCreateArticle() {
     this.router.navigate(['/new-article']);
   }
+
   toggleDropdown() {
     this.isDropdownOpen = !this.isDropdownOpen;
   }
@@ -46,7 +49,6 @@ export class ArticlesComponent {
       this.currentSort = sortKey;
       this.sortAscending = true;
     }
-
     this.sortArticles();
     this.isDropdownOpen = false; // Ferme le dropdown après sélection
   }
@@ -61,6 +63,8 @@ export class ArticlesComponent {
         comparison = a.date.getTime() - b.date.getTime();
       } else if (this.currentSort === 'titre') {
         comparison = a.title.localeCompare(b.title);
+      } else if (this.currentSort === 'author') {
+        comparison = a.author.localeCompare(b.author); // Tri alphabétique par auteur
       }
 
       // Inverser l'ordre si nécessaire
