@@ -1,0 +1,34 @@
+<app-banneer-connected></app-banneer-connected>
+<div class="container">
+    <button class="back_button" (click)="navigateBack()">
+        <mat-icon>west</mat-icon>
+    </button>
+    <div class="article-detail-container">
+        <p id="bold-text">{{ article?.title }}</p>
+        <div class="article-headers">
+            <span class="date">
+                Date de publication : {{ article?.date | date:'short' }}
+            </span>
+            <span class="author">
+                Auteur : {{ article?.author }}
+            </span>
+            <span class="theme">
+                Thème : {{ article?.theme }}
+            </span>
+        </div>
+        <p class="article-content">
+            {{ article?.content }}
+        </p>
+        <hr />
+        <p class="commentaires-label">
+            Commentaires
+        </p>
+        <input
+            type="text"
+            class="input-comment"
+            placeholder="Écrivez ici votre commentaire"
+            [(ngModel)]="newComment">
+    </div>
+    
+</div>
+

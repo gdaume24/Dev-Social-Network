@@ -1,6 +1,13 @@
 .container {
     display: flex;
-    padding: 0 1rem;
+    padding: 0;
+    width: 100% !important;
+    margin: 0;
+    box-sizing: border-box;
+    position: relative;
+    left: 0;
+    right: 0;
+    flex-wrap: wrap;
 }
 mat-icon {
     padding-top: 2px;
@@ -23,7 +30,9 @@ mat-icon {
     align-items: center;
     flex-grow: 1;
     max-width: 25rem;
-    width: 100%
+    justify-self: stretch;
+    width: 100%;
+    flex: 1;
 }
 form {
     display: flex;

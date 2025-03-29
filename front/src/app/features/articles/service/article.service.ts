@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, switchMap } from 'rxjs';
+import { Observable, switchMap, tap } from 'rxjs';
 import { AuthService } from '../../auth/services/auth.service';
 import { ArticleRequest } from '../interface/articleRequest.interface';
 import { Article } from '../interface/article.interface';
@@ -17,7 +17,9 @@ export class ArticleService {
   ) {}
 
   all(): Observable<any> {
-    return this.http.get<Article[]>(`${this.apiUrl}/subscribed`);
+    return this.http.get<Article[]>(`${this.apiUrl}/subscribed`).pipe(
+      tap((data) => console.log('Données reçues de l\'API :', data)) // Log des données reçues;
+    );
   }
 
   createArticle(article: ArticleRequest): Observable<any> {
@@ -26,5 +28,9 @@ export class ArticleService {
             const userId = user.id;
             return this.http.post(`${this.apiUrl}/create/${userId}`, article);
     }))
+  }
+
+  getArticleById(id: string): Observable<Article> {
+    return this.http.get<Article>(`${this.apiUrl}/${id}`);
   }
 }

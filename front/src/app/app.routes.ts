@@ -6,6 +6,7 @@ import { ThemesComponent } from './features/themes/pages/themes/themes.component
 import { ArticlesComponent } from './features/articles/pages/articles/articles.component';
 import { NewArticleComponent } from './features/articles/pages/new-article/new-article.component';
 import { ProfileComponent } from './features/profile/profile.component';
+import { ArticledetailComponent } from './features/articles/pages/articledetail/articledetail.component';
 
 export const routes: Routes = [
   {
@@ -31,6 +32,9 @@ export const routes: Routes = [
   {
     path: 'new-article',
     component: NewArticleComponent,
+  },
+  { path: 'article/:id', 
+    component: ArticledetailComponent
   },
   {
     path: 'profile',

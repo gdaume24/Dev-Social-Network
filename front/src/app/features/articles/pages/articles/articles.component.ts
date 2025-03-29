@@ -20,16 +20,18 @@ export class ArticlesComponent {
   sortOptions = ['date', 'titre']; // Options de tri
   currentSort: string | null = null;
   sortAscending = true; // Indique si le tri est croissant ou décroissant
+  subscription: any;
   
 
   constructor(private router: Router) {}
 
   ngOnInit() {
-    this.articleService.all().subscribe((articles) => {
+    this.subscription = this.articleService.all().subscribe((articles) => {
       this.articles = articles.map((article: Article) => ({
         ...article,
         date: new Date(article.date), // Convertit la chaîne en objet Date
       }));
+      console.log(this.articles);
     });
   }
 
@@ -71,4 +73,11 @@ export class ArticlesComponent {
       return this.sortAscending ? comparison : -comparison;
     });
   }
+  goToArticleDetail(articleId: number) {
+    console.log('Navigating to article detail with ID:', articleId);
+    this.router.navigate(['/article', articleId]);
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+}
 }
