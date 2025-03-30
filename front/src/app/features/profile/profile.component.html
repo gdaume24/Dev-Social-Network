@@ -1,14 +1,16 @@
 <app-banneer-connected></app-banneer-connected>
 <div class="container">
-  <div class="above-line-container">
-    <p class="profil-page-label">Profil utilisateur</p>
-    <div class="profile-data">
-      <input type="text" [placeholder]="user?.userName">
-      <input [placeholder]="user?.email">
-      <input placeholder="Changer le mot de passe">
+    <div class="above-line-container">
+        <p class="profil-page-label">Profil utilisateur</p>
+        <form [formGroup]="profileForm" (ngSubmit)="save()" class="profile-form">
+        <div class="profile-data">
+            <input type="text" formControlName="userName" [placeholder]="user?.userName">
+            <input type="email" formControlName="email" [placeholder]="user?.email">
+            <input type="password" formControlName="password" placeholder="Changer le mot de passe">
+        </div>
+        <button type="submit" class="save-button">Sauvegarder</button>
+        </form>
     </div>
-    <button (click)="save()" class="save-button">Sauvegarder</button>
-  </div>
   <hr />
   <p class="subscriptions-label">Abonnements</p>
 

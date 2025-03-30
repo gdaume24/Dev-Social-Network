@@ -13,11 +13,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserDto {
-
     private Long id;
     private String email;
     private String userName;
     private List<ThemeDto> themes;
-
-    
 }

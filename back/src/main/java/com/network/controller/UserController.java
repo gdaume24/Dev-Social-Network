@@ -1,5 +1,7 @@
 package com.network.controller;
 
+import java.util.Map;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.network.dto.UserDto;
 import com.network.mapper.UserMapper;
 import com.network.models.User;
+import com.network.payload.request.UpdateUserRequest;
 import com.network.services.UserService;
 
 import jakarta.validation.Valid;
@@ -48,9 +51,9 @@ public class UserController {
         }
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<?> putMethodName(@PathVariable String id, @Valid @RequestBody UserDto userDto) {
-        User user = userService.updateById(Long.valueOf(id), this.userMapper.toEntity(userDto));
-        return ResponseEntity.ok().body(this.userMapper.toDto(user));
+    @PutMapping()
+    public ResponseEntity<?> putMethodName(@RequestBody Map<String, String> updates) {
+        Map<String, String> reponse = userService.updateUser(updates);
+        return ResponseEntity.ok().body(reponse);
     }
 }
