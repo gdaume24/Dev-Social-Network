@@ -54,7 +54,6 @@ export class NewArticleComponent {
     });
   }
   createArticle(): void {
-    console.log(this.formGroup.value);
     const articleRequest = this.formGroup.value as ArticleRequest;
     this.articleService.createArticle(articleRequest).subscribe({
       next: () => {

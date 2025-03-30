@@ -13,6 +13,7 @@ import com.network.models.Comment;
 import com.network.models.Theme;
 import com.network.models.User;
 import com.network.payload.request.ArticleRequest;
+import com.network.payload.request.CommentRequest;
 import com.network.repository.ArticleRepository;
 import com.network.repository.CommentRepository;
 import com.network.repository.ThemeRepository;
@@ -68,17 +69,20 @@ public class ArticleService {
         return articleRepository.findById(id).orElse(null);
     }   
 
-    public Comment addCommentToArticle(Long articleId, Long userId, CommentDto commentDto) {
+    public Comment addCommentToArticle(Long articleId, CommentRequest commentRequest) {
         Article article = articleRepository.findById(articleId).orElseThrow();
-        User user = userRepository.findById(userId).orElseThrow();
-
+        User user = userService.getAuthenticatedUser();
         Comment comment = new Comment();
-        comment.setContent(commentDto.getContent());
+        comment.setContent(commentRequest.getComment());
         comment.setArticle(article);
         comment.setUser(user);
-        article.setAuthor(user.getUserName());
-        article.setDate(LocalDateTime.now());
+        comment.setAuthor(user.getUserName());
+        comment.setDate(LocalDateTime.now());
 
         return commentRepository.save(comment);
+    }
+
+    public List<Comment> getCommentsByArticleId(Long articleId) {
+        return commentRepository.findByArticleId(articleId);
     }
 }

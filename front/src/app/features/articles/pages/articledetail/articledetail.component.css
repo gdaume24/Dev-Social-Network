@@ -45,7 +45,86 @@ hr {
     margin-top: 1.5rem;
     margin-left: 0.7rem;
     margin-right: 1.5rem;
+    color: black;
 }
 .commentaires-label {
     margin-top: 1.5rem;
+}
+.comment-section {
+    margin-top: 1.5rem;
+    margin-left: 2rem;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+}
+.comments {
+    display: flex;
+}
+.comment-author {
+    padding-top: 1rem;
+}
+.comment-content {
+    margin-left: 1.5rem;
+    padding: 1rem;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    width: 100%;
+    margin-right: 4.8rem;
+}
+.posting-comment-container{
+    margin-top: 2rem;
+}
+.form-comment {
+    display: flex;
+    margin-bottom: 5rem;
+    justify-content: space-between
+}
+.input-comment {
+    padding: 0.5rem;
+    border-radius: 5px;
+    border-width: 1px;
+    margin-left: 3rem;
+    width: 90%;
+    height: 5rem;
+    vertical-align: top;
+    font-family: Roboto, "Inter", sans-serif;
+    font-size: 16px;
+}
+.submit-button {
+    margin-left: 2rem;
+    padding: 15px;
+    padding-left: 20px;
+    margin-right: 2rem;
+    background-color: white;
+    border: none;
+}
+
+.send-icon {
+    transform: scale(1.3);
+    cursor: pointer;
+}
+@media (max-width: 600px) {
+    .container {
+        display: block;
+    }
+    .comment-section {
+        margin-right: 1.5rem;
+    }
+    .comments {
+        flex-direction: column;
+    }
+    .comment-author {
+        align-self: flex-end;
+        margin-bottom: 0.5rem;
+    }
+    .comment-section {
+        margin-left: 0;
+    }
+    .comment-content {
+        margin-left: 0;
+        box-sizing: border-box
+    }
+    .posting-comment-container {
+        margin-top: 1rem;
+    }
 }

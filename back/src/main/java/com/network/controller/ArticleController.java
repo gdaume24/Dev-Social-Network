@@ -1,6 +1,8 @@
 package com.network.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -13,8 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.network.dto.CommentDto;
 import com.network.mapper.ArticleMapper;
+import com.network.mapper.CommentMapper;
 import com.network.models.Article;
 import com.network.payload.request.ArticleRequest;
+import com.network.payload.request.CommentRequest;
 import com.network.services.ArticleService;
 
 import jakarta.validation.Valid;
@@ -26,8 +30,10 @@ public class ArticleController {
 
     private ArticleMapper articleMapper;
     private ArticleService articleService;
+    private CommentMapper commentMapper;
 
-    public ArticleController(ArticleMapper articleMapper, ArticleService articleService) {
+    public ArticleController(ArticleMapper articleMapper, ArticleService articleService, CommentMapper commentMapper) {
+        this.commentMapper = commentMapper;
         this.articleMapper = articleMapper;
         this.articleService = articleService;
     }
@@ -51,9 +57,18 @@ public class ArticleController {
         return ResponseEntity.ok().body(this.articleMapper.toDto(articleService.getArticleById(Long.parseLong(id))));
     }
 
-    @PostMapping("/{articleId}/comment/{userId}")
-    public ResponseEntity<?> commentOnArticle(@PathVariable("articleId") Long articleId, @PathVariable("userId") Long userId, @Valid @RequestBody CommentDto commentDto) {
-        articleService.addCommentToArticle(articleId, userId, commentDto);
-        return ResponseEntity.ok().body("Comment added successfully");
+    @PostMapping("/{articleId}/comment")
+    public ResponseEntity<?> commentOnArticle(@PathVariable("articleId") Long articleId, @Valid @RequestBody CommentRequest commentRequest) {
+        articleService.addCommentToArticle(articleId, commentRequest);
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "Comment added successfully");
+        return ResponseEntity.ok().body(response);
     }
+
+    @GetMapping("/{articleId}/comments")
+    public ResponseEntity<?> getCommentsByArticleId(@PathVariable("articleId") Long articleId) {
+        return ResponseEntity.ok().body(articleService.getCommentsByArticleId(articleId).stream()
+                .map(commentMapper::toDto)
+                .toList());
+}
 }

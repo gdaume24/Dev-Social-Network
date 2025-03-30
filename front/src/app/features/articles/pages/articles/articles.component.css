@@ -53,6 +53,7 @@
   border-radius: 10px; /* Bords arrondis */
   padding: 15px;
   flex: 1 0 40%;
+  cursor: pointer;
 }
 
 /* Titre de l'article */

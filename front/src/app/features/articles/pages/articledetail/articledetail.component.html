@@ -23,12 +23,28 @@
         <p class="commentaires-label">
             Commentaires
         </p>
-        <input
-            type="text"
-            class="input-comment"
-            placeholder="Écrivez ici votre commentaire"
-            [(ngModel)]="newComment">
+        <div class="comment-section">
+            <div class="comments" *ngFor="let comment of comments">
+                <p class="comment-author">
+                    {{ comment.author }}
+                </p>
+                <p class="comment-content">
+                    {{ comment.content }}
+                </p>
+            </div>
+            <div class="posting-comment-container">
+                <form [formGroup]="formGroup" class="form-comment">
+                    <textarea
+                    formControlName="comment"
+                    type="text"
+                    class="input-comment"
+                    placeholder="Écrivez ici votre commentaire"></textarea>
+                    <button class="submit-button" type="submit" (click)="postComment()">
+                        <img src="/icon_send.png" class="send-icon"/>
+                    </button>
+                </form>
+            </div>
+        </div>
     </div>
-    
 </div>
 

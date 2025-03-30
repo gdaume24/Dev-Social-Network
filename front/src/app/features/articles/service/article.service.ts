@@ -4,6 +4,8 @@ import { Observable, switchMap, tap } from 'rxjs';
 import { AuthService } from '../../auth/services/auth.service';
 import { ArticleRequest } from '../interface/articleRequest.interface';
 import { Article } from '../interface/article.interface';
+import { CommentRequest } from '../interface/commentRequest.interface';
+import { CommentsReponse } from '../interface/commentsReponse.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +34,17 @@ export class ArticleService {
 
   getArticleById(id: string): Observable<Article> {
     return this.http.get<Article>(`${this.apiUrl}/${id}`);
+  }
+
+  postComment(articleId: string, comment: string): Observable<any> {
+    console.log('Article ID:', articleId);
+    console.log('Comment:', comment);
+    const commentRequest: CommentRequest = { comment }; // Crée un objet JSON
+    console.log('Comment Request:', commentRequest);
+    return this.http.post(`${this.apiUrl}/${articleId}/comment`, commentRequest);
+  }
+
+  getComments(articleId: string): Observable<CommentsReponse[]> {
+    return this.http.get<CommentsReponse[]>(`${this.apiUrl}/${articleId}/comments`);
   }
 }
