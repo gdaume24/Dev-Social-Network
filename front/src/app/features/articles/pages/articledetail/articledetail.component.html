@@ -1,10 +1,15 @@
 <app-banneer-connected></app-banneer-connected>
 <div class="container">
-    <button class="back_button" (click)="navigateBack()">
-        <mat-icon>west</mat-icon>
-    </button>
+    <!-- Header avec la flèche et le titre -->
+    <div class="header-container">
+        <button class="back_button" (click)="navigateBack()">
+            <mat-icon>west</mat-icon>
+        </button>
+        <p class="article-title" id="bold-text">{{ article?.title }}</p>
+    </div>
+   
+    <!-- Contenu principal -->
     <div class="article-detail-container">
-        <p id="bold-text">{{ article?.title }}</p>
         <div class="article-headers">
             <span class="date">
                 Date de publication : {{ article?.date | date:'short' }}

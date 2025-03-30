@@ -1,4 +1,7 @@
 .container {
+    padding: 1rem;
+}
+.header-container {
     display: flex;
 }
 .back_button {
@@ -13,12 +16,16 @@ mat-icon {
     padding-top: 2px;
     transform: scale(1.1);
 }
+.article-title {
+    margin-left: 2rem;
+    margin-top: 1.5rem;
+}
 .article-detail-container {
     display: flex;
     flex-direction: column;
     margin-left: 2rem;
+    margin-right: 2rem;
     margin-top: 1.5rem;
-    width: 100%;
 }
 #bold-text {
     margin-bottom: 1em;
@@ -107,8 +114,11 @@ hr {
     .container {
         display: block;
     }
-    .comment-section {
-        margin-right: 1.5rem;
+    .article-detail-container {
+        margin-left: 0rem;
+        margin-right: 0rem;
+        margin-top: 0.8rem;
+        box-sizing: border-box;
     }
     .comments {
         flex-direction: column;
@@ -119,6 +129,7 @@ hr {
     }
     .comment-section {
         margin-left: 0;
+        margin-top: 0.5rem;
     }
     .comment-content {
         margin-left: 0;
@@ -126,5 +137,12 @@ hr {
     }
     .posting-comment-container {
         margin-top: 1rem;
+    }
+    .input-comment {
+        margin-left: 0;
+    }
+    .submit-button {
+        margin-left: 1rem;
+        margin-right: 1rem;
     }
 }
