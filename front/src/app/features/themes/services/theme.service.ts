@@ -12,10 +12,18 @@ export class ThemeService {
   private authService = inject(AuthService);
   private pathService = 'api/themes';
   themes = signal<Theme[]>([]);
+  subscribedThemes = signal<Theme[]>([]);
+
   public getAll(): Observable<Theme[]> {
     return this.httpClient
       .get<Theme[]>(`${this.pathService}`)
       .pipe(tap((themes) => this.themes.set(themes)));
+  }
+
+  public getSubscribedThemes(): Observable<Theme[]> {
+    return this.httpClient.get<Theme[]>(`${this.pathService}/subscribed`).pipe(
+      tap((themes) => this.subscribedThemes.set(themes))
+    );
   }
 
   public subscribeToTheme(themeId: string): Observable<any> {
@@ -31,16 +39,11 @@ export class ThemeService {
   }
 
   public unsubscribeFromTheme(themeId: string): Observable<any> {
-    return this.authService.me().pipe(
-      switchMap((user) => {
-        const userId = user.id;
-        return this.httpClient.delete(
-          `${this.pathService}/unsubscribe/${themeId}`,
-          {}
-        );
-      })
-    );
-  }
+    return this.httpClient.delete(
+        `${this.pathService}/unsubscribe/${themeId}`,
+        {}
+      );
+    };
 
   public isSubscribedToTheme(themeId: string): Observable<boolean> {
     return this.authService.me().pipe(

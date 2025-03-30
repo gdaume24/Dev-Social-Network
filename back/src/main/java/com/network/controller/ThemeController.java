@@ -43,6 +43,13 @@ public class ThemeController {
         return ResponseEntity.ok().body(themeMapper.toDto(themes));
     }
 
+    @GetMapping("/subscribed")
+    public ResponseEntity<?> getSubscribedThemes() {
+        Long userId = userService.getAuthenticatedUser().getId();
+        List<Theme> subscribedThemes = themeService.getSubscribedThemes(userId);
+        return ResponseEntity.ok().body(themeMapper.toDto(subscribedThemes));
+}
+
     @PostMapping("/subscribe/{themeId}")
     public ResponseEntity<?> subscribe(@PathVariable("themeId") String themeId) {
         Long userId = userService.getAuthenticatedUser().getId();

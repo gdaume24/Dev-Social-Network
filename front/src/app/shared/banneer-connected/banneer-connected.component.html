@@ -14,8 +14,13 @@
     >
       <p [class.purple-text]="themeRoute">Thèmes</p>
     </button>
-    <img id="user-icon" src="/user-icon.png" alt="image" />
-
+    <button
+    class="large-display-buttons"
+    (click)="navigateToProfile()"
+    id="profile-button"
+    >
+      <img id="user-icon" src="/user-icon.png" alt="image" />
+    </button>
     <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon id="menu-deroulant">menu</mat-icon>
     </button>

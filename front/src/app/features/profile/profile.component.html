@@ -1,1 +1,23 @@
-<p>profile works!</p>
+<app-banneer-connected></app-banneer-connected>
+<div class="container">
+  <div class="above-line-container">
+    <p class="profil-page-label">Profil utilisateur</p>
+    <div class="profile-data">
+      <input type="text" [placeholder]="user?.userName">
+      <input [placeholder]="user?.email">
+      <input placeholder="Changer le mot de passe">
+    </div>
+    <button (click)="save()" class="save-button">Sauvegarder</button>
+  </div>
+  <hr />
+  <p class="subscriptions-label">Abonnements</p>
+
+  <!-- Liste des thèmes abonnés -->
+  <div class="themes-container">
+    <div class="theme-card" *ngFor="let theme of subscribedThemes">
+      <p class="theme-name">{{ theme.name }}</p>
+      <p class="theme-description">{{ theme.description }}</p>
+      <button class="unsubscribe-button" (click)="unsubscribe(theme.id)">Se désabonner</button>
+    </div>
+  </div>
+</div>
