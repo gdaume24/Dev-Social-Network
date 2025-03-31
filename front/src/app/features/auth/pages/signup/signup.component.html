@@ -7,7 +7,7 @@
   <div class="center-box">
     <p class="header">Inscription</p>
     <p></p>
-    <form [formGroup]="form" (submit)="registration()">
+    <form [formGroup]="form" (submit)="registration()" class="form">
       <div class="form-group">
         <label for="username">Nom d'utilisateur</label>
         <input
@@ -29,10 +29,26 @@
           type="text"
           formControlName="password"
         />
+        <div
+          *ngIf="form.get('password')?.invalid && form.get('password')?.touched"
+          style="position: relative"
+        >
+          <small
+            *ngIf="form.get('password')?.errors?.['required']"
+            class="error-message"
+          >
+            Le mot de passe est requis.
+          </small>
+          <small
+            *ngIf="form.get('password')?.errors?.['pattern']"
+            class="error-message"
+          >
+            Le mot de passe doit contenir au moins 8 caractères, une lettre
+            majuscule, une lettre minuscule, un chiffre et un caractère spécial
+          </small>
+        </div>
       </div>
-      <button type="submit" class="submit-button" [disabled]="form.invalid">
-        S'inscrire
-      </button>
+      <button type="submit" class="submit-button">S'inscrire</button>
     </form>
   </div>
 </div>

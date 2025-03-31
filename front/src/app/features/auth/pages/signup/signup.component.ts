@@ -14,10 +14,11 @@ import { ApiService } from '../../../../service/api.service';
 import { RegisterRequest } from '../../interfaces/RegisterRequest.interface';
 import { AuthSuccess } from '../../interfaces/AuthSuccess.interface';
 import { User } from '../../../../interfaces/user.interface';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-signup',
-  imports: [MatIconModule, ReactiveFormsModule, BanniereComponent],
+  imports: [MatIconModule, ReactiveFormsModule, BanniereComponent, NgIf],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css',
 })
@@ -32,11 +33,24 @@ export class SignupComponent {
     this.form = this.fb.group({
       userName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.min(3)]],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.min(8),
+          Validators.pattern(
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+          ), // Demande au moins un chiffre, lettre minuscule, lettre majuscule et caractère spécial
+        ],
+      ],
     });
   }
 
   registration() {
+    if (this.form.invalid) {
+      console.log('Formulaire invalide', this.form.get('password')?.errors);
+      return;
+    }
     const registerRequest = this.form.value as RegisterRequest;
     this.authService
       .register(registerRequest)

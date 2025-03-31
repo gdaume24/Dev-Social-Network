@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { BanneerConnectedComponent } from '../../../../shared/banneer-connected/banneer-connected.component';
 import { Theme } from '../../../themes/interfaces/theme.interface';
 import { ThemeService } from '../../../themes/services/theme.service';
-import { NgFor, NgIf, NgStyle } from '@angular/common';
+import { NgFor } from '@angular/common';
 import { ArticleService } from '../../service/article.service';
 import {
   FormControl,

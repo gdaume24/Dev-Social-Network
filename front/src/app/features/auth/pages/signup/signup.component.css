@@ -29,6 +29,8 @@ form {
   display: flex;
   flex-direction: column;
   margin-top: 0.5rem;
+  width: 100%;
+  align-items: center;
 }
 .form-group {
   display: flex;
@@ -42,6 +44,12 @@ form {
   border-radius: 5px;
   font-size: 14px;
   border-width: 1px;
+}
+.error-message {
+  color: red; /* Texte rouge */
+  font-size: 0.875rem; /* Taille de texte plus petite (optionnel) */
+  display: block;
+  position: absolute; /* Empêche le décalage du formulaire */
 }
 .submit-button {
   font-size: 18px;
