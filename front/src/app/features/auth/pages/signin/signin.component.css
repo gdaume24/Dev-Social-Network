@@ -43,6 +43,12 @@ form {
   font-size: 14px;
   border-width: 1px;
 }
+.error-message-container {
+  margin-top: 0.5rem;
+}
+.error-message {
+  color: red;
+}
 .submit-button {
   font-size: 18px;
   padding-top: 10px;

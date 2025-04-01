@@ -35,6 +35,8 @@ form {
 .form-group {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  width: 100%;
   margin-bottom: 50px;
   font-size: 14px;
 }
@@ -45,11 +47,19 @@ form {
   font-size: 14px;
   border-width: 1px;
 }
+.error-message-container {
+  margin-top: 0.4rem;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+}
 .error-message {
   color: red; /* Texte rouge */
   font-size: 0.875rem; /* Taille de texte plus petite (optionnel) */
   display: block;
-  position: absolute; /* Empêche le décalage du formulaire */
+  position: relative;
+  text-align: center;
 }
 .submit-button {
   font-size: 18px;

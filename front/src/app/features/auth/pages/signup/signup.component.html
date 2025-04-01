@@ -31,7 +31,7 @@
         />
         <div
           *ngIf="form.get('password')?.invalid && form.get('password')?.touched"
-          style="position: relative"
+          class ="error-message-container"
         >
           <small
             *ngIf="form.get('password')?.errors?.['required']"

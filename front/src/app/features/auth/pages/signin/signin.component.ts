@@ -14,16 +14,19 @@ import { LoginRequest } from '../../interfaces/LoginRequest.interface';
 import { AuthSuccess } from '../../interfaces/AuthSuccess.interface';
 import { User } from '../../../../interfaces/user.interface';
 import { ApiService } from '../../../../service/api.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-signin',
-  imports: [MatIconModule, ReactiveFormsModule, BanniereComponent],
+  imports: [MatIconModule, ReactiveFormsModule, BanniereComponent, NgIf],
   templateUrl: './signin.component.html',
   styleUrl: './signin.component.css',
 })
 export class SigninComponent {
   authService = inject(AuthService);
   form: FormGroup;
+  errorMessage?: string
 
   constructor(
     private router: Router,
@@ -32,22 +35,32 @@ export class SigninComponent {
   ) {
     this.form = this.fb.group({
       email: [
-        'geoffroy.daumer@yopmail.com',
+        '',
         [Validators.required, Validators.email],
       ],
-      password: ['12345', [Validators.required, Validators.min(3)]],
+      password: [
+        '', 
+        [Validators.required, Validators.min(3)]]
+        ,
     });
   }
 
   connection() {
     const loginRequest = this.form.value as LoginRequest;
-    this.authService.login(loginRequest).subscribe((response: AuthSuccess) => {
-      localStorage.setItem('token', response.token);
-      this.authService.me().subscribe((user: User) => {
-        this.apiService.logIn(user);
+    this.authService.login(loginRequest).subscribe({
+      next: (response: AuthSuccess) => {
+        localStorage.setItem('token', response.token);
+        this.authService.me().subscribe((user: User) => {
+          this.apiService.logIn(user);
+          this.router.navigate(['/articles']);
+        });
         this.router.navigate(['/articles']);
-      });
-      this.router.navigate(['/articles']);
+      },
+      error: (error: HttpErrorResponse) => {
+        if (error.error.message) {
+          this.errorMessage = error.error.message;
+        }
+      }
     });
   }
   navigateBack() {
