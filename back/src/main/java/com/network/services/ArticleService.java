@@ -49,12 +49,11 @@ public class ArticleService {
         return filtredArticleList;
     }
 
-    public Article createArticle(Long userId, ArticleRequest articleRequest) {
-        
+    public Article createArticle(ArticleRequest articleRequest) {
         Article article = new Article();
         article.setTitle(articleRequest.getTitle());
         // Ajoute le nom de l'auteur
-        User user = userRepository.findById(userId).orElseThrow();
+        User user = userService.getAuthenticatedUser();
         article.setAuthor(user.getUserName());
         article.setContent(articleRequest.getContent());
         article.setDate(LocalDateTime.now());

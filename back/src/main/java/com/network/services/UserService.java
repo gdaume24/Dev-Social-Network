@@ -16,11 +16,8 @@ import com.network.dto.UserDto;
 import com.network.mapper.UserMapper;
 import com.network.models.Theme;
 import com.network.models.User;
-import com.network.payload.request.UpdateUserRequest;
 import com.network.repository.ThemeRepository;
 import com.network.repository.UserRepository;
-
-import jakarta.transaction.Transactional;
 
 /**
  * Service for user operations

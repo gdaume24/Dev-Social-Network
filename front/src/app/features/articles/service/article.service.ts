@@ -25,11 +25,7 @@ export class ArticleService {
   }
 
   createArticle(article: ArticleRequest): Observable<any> {
-    return this.authService.me().pipe(
-          switchMap((user) => {
-            const userId = user.id;
-            return this.http.post(`${this.apiUrl}/create/${userId}`, article);
-    }))
+    return this.http.post(`${this.apiUrl}/create`, article);
   }
 
   getArticleById(id: string): Observable<Article> {

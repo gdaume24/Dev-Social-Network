@@ -19,6 +19,9 @@ import com.network.services.UserService;
 
 /**
  * Controller for authentication
+ * 
+ * This controller provides endpoints for user registration, login, and retrieving
+ * the authenticated user's information.
  */
 @RequestMapping("auth")
 @RestController
@@ -32,22 +35,27 @@ public class AuthController {
         this.userService = userService;
     }
 
+    /**
+     * Endpoint for user registration.
+     * 
+     * @return ResponseEntity containing the jwt token response.
+     */
     @PostMapping("register")
     public ResponseEntity<AuthReponse> register(@RequestBody SignupRequest signupRequest) {
-
         if (authService.hasUserWithEmail(signupRequest.getEmail())) {
             throw new BadRequestException("Un utilisateur avec cet email existe déjà.");
         }
         else if (authService.hasUserWithName(signupRequest.getUserName())) {
             throw new BadRequestException("Un utilisateur avec ce nom existe déjà.");
         }
-
         return authService.register(signupRequest);        
     }
 
+    /*
+     * Endpoint for user connexion.
+     */
     @PostMapping("login")
     public ResponseEntity<AuthReponse> authenticateController(@RequestBody LoginRequest loginRequest) {
-
         try {
             return authService.authenticate(loginRequest);
         }
@@ -56,11 +64,12 @@ public class AuthController {
         }
     }
 
+    /*
+     * Endpoint to get the authenticated user's information from the jwt token.
+     */
     @GetMapping("me")
     public ResponseEntity<UserDto> authenticatedUser() {
-
         UserDto response = userService.getAuthenticatedUserAuthMeReponse();
-        
         return ResponseEntity.ok(response);
     }
 }
