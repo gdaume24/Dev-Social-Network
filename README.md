@@ -13,7 +13,7 @@ Lancement de la base de données :
   MYSQL_PASSWORD=votre_password
   ```
   
-- Entrer la commande suivante dans la racine : db/rebuild.bat
+- Entrer la commande suivante dans la racine du répertoire : db/rebuild.bat
 
 Lancement du back :
 - Créer un autre fichier .env dans le dossier back, en définissant les variables suivantes selon vos informations personnelles :
