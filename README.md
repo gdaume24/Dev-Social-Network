@@ -24,6 +24,7 @@ Lancement du back :
   SECURITY_JWT_SECRET_KEY=votre_jwt_secret_key
   SECURITY_JWT_EXPIRATION_TIME=votre_security_jwt_expiration_time
   ```
+  
 - Lancer le back en allant chercher le fichier de lancement de l'application, clic droit et debug Java sur
 -> back\src\main\java\com\network\Application.java
 
