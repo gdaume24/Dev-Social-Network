@@ -19,12 +19,18 @@ public class ThemeService {
         this.themeRepository = themeRepository;
     }
 
+    /*
+     * Récupère tous les thèmes.
+     */
     public List<Theme> findAllThemes() {
         return themeRepository.findAll();
     }   
 
+    /*
+     * Récupère tous les thèmes auxquels l'utilisateur est abonné.
+     */
     public List<Theme> getSubscribedThemes(Long userId) {
         User user = userService.findById(userId);
-        return user.getThemes(); // Assurez-vous que la relation entre User et Theme est correctement configurée
+        return user.getThemes();
     }
 }

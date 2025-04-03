@@ -45,7 +45,7 @@ public class AuthService {
     }
 
     public ResponseEntity<AuthReponse> authenticate(LoginRequest loginRequestDto) {
-        
+    
         Authentication authentication = authenticationManager.authenticate(
             new UsernamePasswordAuthenticationToken(
                 loginRequestDto.getEmail(),
@@ -63,10 +63,16 @@ public class AuthService {
         return new AuthReponse().setToken(jwtToken);
     }
 
+    /*
+     * Check if a user with the given email already exists in the database.
+     */
     public boolean hasUserWithEmail(String email) {
         return userRepository.findByEmail(email).isPresent();
     }
     
+    /*
+     * Check if a user with the given name already exists in the database.
+    */
     public boolean hasUserWithName(String name) {
         return userRepository.findByUserName(name).isPresent();
     }

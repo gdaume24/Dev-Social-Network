@@ -15,7 +15,6 @@ import com.network.payload.request.CommentRequest;
 import com.network.repository.ArticleRepository;
 import com.network.repository.CommentRepository;
 import com.network.repository.ThemeRepository;
-import com.network.repository.UserRepository;
 
 @Service
 public class ArticleService {
@@ -32,6 +31,11 @@ public class ArticleService {
         this.themeRepository = themeRepository;
     }    
 
+    /**
+     * Récupère les articles des thèmes auxquels l'utilisateur authentifié est abonné.
+     *
+     * @return Une liste d'articles triée du plus récent au plus ancien.
+     */
     public List<Article> getSubscribedArticles() {
         
         User user = userService.getAuthenticatedUser();
@@ -39,21 +43,25 @@ public class ArticleService {
         // Récupère la liste des articles des thèmes auxquels l'utilisateur est abonné
         List<Theme> subscribedThemes = user.getThemes();
         List<Article> filtredArticleList = articleRepository.findByThemeIn(subscribedThemes);
+
         // Trie les articles du plus récent au plus ancien
         filtredArticleList.sort(Comparator.comparing(Article::getDate).reversed());
 
         return filtredArticleList;
     }
 
+
     public Article createArticle(ArticleRequest articleRequest) {
         Article article = new Article();
         article.setTitle(articleRequest.getTitle());
+
         // Ajoute le nom de l'auteur
         User user = userService.getAuthenticatedUser();
+        article.setUser(user);
         article.setAuthor(user.getUserName());
+
         article.setContent(articleRequest.getContent());
         article.setDate(LocalDateTime.now());
-        article.setUser(user);
         article.setTheme(themeRepository.findByName(articleRequest.getTheme()));
         Article savedArticle = articleRepository.save(article);
         
@@ -65,8 +73,10 @@ public class ArticleService {
     }   
 
     public Comment addCommentToArticle(Long articleId, CommentRequest commentRequest) {
+        
         Article article = articleRepository.findById(articleId).orElseThrow();
         User user = userService.getAuthenticatedUser();
+
         Comment comment = new Comment();
         comment.setContent(commentRequest.getComment());
         comment.setArticle(article);
