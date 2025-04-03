@@ -43,7 +43,6 @@ public class ThemeController {
     @GetMapping("")
     public ResponseEntity<?> findAllThemes() {
         List<Theme> themes = themeService.findAllThemes();
-        System.out.println("Themes fetched: " + themes); 
         return ResponseEntity.ok().body(themeMapper.toDto(themes));
     }
 
