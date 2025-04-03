@@ -15,6 +15,7 @@ import { RegisterRequest } from '../../interfaces/RegisterRequest.interface';
 import { AuthSuccess } from '../../interfaces/AuthSuccess.interface';
 import { User } from '../../../../interfaces/user.interface';
 import { NgIf } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-signup',
@@ -25,6 +26,7 @@ import { NgIf } from '@angular/common';
 export class SignupComponent {
   authService = inject(AuthService);
   form: FormGroup;
+  errorMessage?: string;
   constructor(
     private router: Router,
     private fb: FormBuilder,
@@ -52,16 +54,22 @@ export class SignupComponent {
       return;
     }
     const registerRequest = this.form.value as RegisterRequest;
-    this.authService
-      .register(registerRequest)
-      .subscribe((response: AuthSuccess) => {
+    this.authService.register(registerRequest).subscribe({
+      next: (response: AuthSuccess) => {
         localStorage.setItem('token', response.token);
         this.authService.me().subscribe((user: User) => {
           this.apiService.logIn(user);
           this.router.navigate(['/themes']);
         });
         this.router.navigate(['/themes']);
-      });
+      },
+      error: (error: HttpErrorResponse) => {
+        if (error.error.message) {
+          console.log(error.error.message);
+          this.errorMessage = error.error.message;
+        }
+      },
+    });
   }
   navigateBack() {
     this.router.navigate(['/']);

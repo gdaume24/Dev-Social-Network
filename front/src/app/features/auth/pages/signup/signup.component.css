@@ -47,12 +47,15 @@ form {
   font-size: 14px;
   border-width: 1px;
 }
-.error-message-container {
+.error-message-container-form {
   margin-top: 0.4rem;
   width: 50%;
   display: flex;
   justify-content: center;
   box-sizing: border-box;
+}
+.error-message-container {
+  margin-top: 0.5rem;
 }
 .error-message {
   color: red; /* Texte rouge */

@@ -31,7 +31,7 @@
         />
         <div
           *ngIf="form.get('password')?.invalid && form.get('password')?.touched"
-          class ="error-message-container"
+          class="error-message-container-form"
         >
           <small
             *ngIf="form.get('password')?.errors?.['required']"
@@ -46,6 +46,9 @@
             Le mot de passe doit contenir au moins 8 caractères, une lettre
             majuscule, une lettre minuscule, un chiffre et un caractère spécial
           </small>
+        </div>
+        <div *ngIf="errorMessage" class="error-message-container">
+          <p class="error-message">{{ errorMessage }}</p>
         </div>
       </div>
       <button type="submit" class="submit-button">S'inscrire</button>
