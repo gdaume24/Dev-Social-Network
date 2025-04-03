@@ -27,7 +27,6 @@ export class ThemeComponent {
   onSubscribe() {
     if (!this.isSubscribed) {
       this.themeService.subscribeToTheme(this.id).subscribe((response) => {
-        console.log('Subscribed to theme:', response);
         this.isSubscribed = true;
       });
     } else {
@@ -37,7 +36,6 @@ export class ThemeComponent {
 
   onUnsubscribe() {
     this.themeService.unsubscribeFromTheme(this.id).subscribe((response) => {
-      console.log('Unsubscribed from theme:', response);
       this.isSubscribed = false; // Mettre à jour l'état d'abonnement
     });
   }

@@ -4,26 +4,21 @@ import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.network.dto.UserDto;
 import com.network.mapper.UserMapper;
 import com.network.models.User;
 import com.network.payload.request.UpdateUserRequest;
+import com.network.payload.response.UserSuccessfullyUpdatedReponse;
 import com.network.services.UserService;
-
-import jakarta.validation.Valid;
-
 import org.springframework.web.bind.annotation.PutMapping;
 
 /**
- * For subscribing to themes, getting subscribed articles and updating user information
+ * Controller for updating user information.
  */
 @RestController
 @CrossOrigin
@@ -31,29 +26,20 @@ import org.springframework.web.bind.annotation.PutMapping;
 public class UserController {
 
     private final UserService userService;
-    private final UserMapper userMapper;
 
-    public UserController(UserService userService, UserMapper userMapper) {
+    public UserController(UserService userService) {
         this.userService = userService;
-        this.userMapper = userMapper;
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> findById(@PathVariable("id") String id) {
-        try {
-            User user = this.userService.findById(Long.valueOf(id));
-            if (user == null) {
-                return ResponseEntity.notFound().build();
-            }
-            return ResponseEntity.ok().body(this.userMapper.toDto(user));
-        } catch (NumberFormatException e) {
-            return ResponseEntity.badRequest().build();
-        }
-    }
-
+    /**
+     * Endpoint to update user information.
+     *
+     * @param updates A map containing the fields to update and their new values.
+     * @return ResponseEntity containing the new jwt token and a success message.
+     */
     @PutMapping()
-    public ResponseEntity<?> putMethodName(@RequestBody Map<String, String> updates) {
-        Map<String, String> reponse = userService.updateUser(updates);
+    public ResponseEntity<?> putMethodName(@RequestBody UpdateUserRequest updates) {
+        UserSuccessfullyUpdatedReponse reponse = userService.updateUser(updates);
         return ResponseEntity.ok().body(reponse);
     }
 }

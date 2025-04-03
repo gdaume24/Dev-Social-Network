@@ -16,6 +16,8 @@ import com.network.dto.UserDto;
 import com.network.mapper.UserMapper;
 import com.network.models.Theme;
 import com.network.models.User;
+import com.network.payload.request.UpdateUserRequest;
+import com.network.payload.response.UserSuccessfullyUpdatedReponse;
 import com.network.repository.ThemeRepository;
 import com.network.repository.UserRepository;
 
@@ -58,26 +60,31 @@ public class UserService {
         return userRepository.findById(id).orElse(null);
     }
 
-    public Map<String, String> updateUser(Map<String, String> updates) {
+    public UserSuccessfullyUpdatedReponse updateUser(UpdateUserRequest updates) {
         User user = getAuthenticatedUser();
-        // Met à jour uniquement les champs modifiés
-        if (updates.containsKey("userName")) {
-            user.setUserName(updates.get("userName"));
+
+        // Met à jour uniquement les champs non nuls
+        if (updates.getUserName() != null) {
+            user.setUserName(updates.getUserName());
         }
-        if (updates.containsKey("email")) {
-            user.setEmail(updates.get("email"));
+        if (updates.getEmail() != null) {
+            user.setEmail(updates.getEmail());
         }
-        if (updates.containsKey("password") && updates.get("password") != null) {
-            user.setPassword(passwordEncoder.encode(updates.get("password")));
+        if (updates.getPassword() != null) {
+            user.setPassword(passwordEncoder.encode(updates.getPassword()));
         }
+
         User updatedUser = userRepository.save(user);
-        // Générer un nouveau JWT avec les nouvelles informations
+
+        // Générer un nouveau JWT avec les nouvelles informations de l'utilisateur
         String newJwt = jwtService.generateToken(updatedUser);
+
         // Met à jour le SecurityContext
         updateSecurityContext(updatedUser);
-        Map<String, String> response = new HashMap<>();
-        response.put("jwt", newJwt);
-        response.put("message", "User updated successfully");
+
+        UserSuccessfullyUpdatedReponse response = new UserSuccessfullyUpdatedReponse();
+        response.setJwt(newJwt);
+        response.setMessage("User updated successfully");
         return response;
     }
 

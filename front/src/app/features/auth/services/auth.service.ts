@@ -21,7 +21,6 @@ export class AuthService {
     );
   }
   login(loginRequest: LoginRequest): Observable<AuthSuccess> {
-    console.log(loginRequest.email, loginRequest.password);
     return this.httpClient.post<AuthSuccess>(
       `${this.pathService}/login`,
       loginRequest

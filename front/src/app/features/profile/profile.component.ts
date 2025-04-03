@@ -4,7 +4,12 @@ import { User } from '../../interfaces/user.interface';
 import { AuthService } from '../auth/services/auth.service';
 import { ThemeService } from '../themes/services/theme.service';
 import { NgFor } from '@angular/common';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserService } from '../user/user.service';
 
@@ -12,7 +17,7 @@ import { UserService } from '../user/user.service';
   selector: 'app-profile',
   imports: [BanneerConnectedComponent, NgFor, ReactiveFormsModule],
   templateUrl: './profile.component.html',
-  styleUrl: './profile.component.css'
+  styleUrl: './profile.component.css',
 })
 export class ProfileComponent {
   profileForm!: FormGroup;
@@ -20,8 +25,8 @@ export class ProfileComponent {
   subscribedThemes: any;
 
   constructor(
-    private fb: FormBuilder, 
-    private authService: AuthService, 
+    private fb: FormBuilder,
+    private authService: AuthService,
     private userService: UserService,
     private themeService: ThemeService,
     private snackBar: MatSnackBar
@@ -43,22 +48,22 @@ export class ProfileComponent {
     this.authService.me().subscribe({
       next: (data: User) => {
         this.user = data;
-        console.log(this.user);
-      }
+        this.profileForm.patchValue({
+          userName: this.user.userName,
+          email: this.user.email,
+        });
+      },
     });
   }
   private loadSubscribedThemes(): void {
     this.themeService.getSubscribedThemes().subscribe({
       next: (data) => {
         this.subscribedThemes = data;
-        console.log(this.subscribedThemes);
-      }
+      },
     });
   }
 
   save() {
-    // Implement save logic here
-    console.log('Save clicked');
     const formValues = this.profileForm.value;
     if (formValues.userName || formValues.email || formValues.password) {
       const updatedUser = {
@@ -66,16 +71,14 @@ export class ProfileComponent {
         email: formValues.email || this.user.email,
         password: formValues.password || null,
       };
-      console.log("UPDATE USER = ", updatedUser);
       this.userService.updateUser(updatedUser).subscribe({
         next: (response) => {
           const newToken = response.jwt; // Récupérer le nouveau JWT
           localStorage.setItem('token', newToken); // Remplacer l'ancien token
-          this.showSnackBar('Vos informations ont été modifiées avec succès !')
-        },     
+          this.showSnackBar('Vos informations ont été modifiées avec succès !');
+        },
       });
-    }  else {
-      console.log('Form is invalid:', this.profileForm.errors);
+    } else {
       this.showSnackBar('Veuillez remplir correctement le formulaire.');
     }
   }
@@ -83,9 +86,8 @@ export class ProfileComponent {
   unsubscribe(themeId: string): void {
     this.themeService.unsubscribeFromTheme(themeId).subscribe({
       next: () => {
-        console.log(`Désabonné du thème avec l'ID : ${themeId}`);
-        this.loadSubscribedThemes();// Met à jour la liste localement
-      }
+        this.loadSubscribedThemes(); // Met à jour la liste localement
+      },
     });
   }
 
@@ -96,15 +98,4 @@ export class ProfileComponent {
       verticalPosition: 'top', // Position verticale
     });
   }
-  // private refreshSubscribedThemes(): void {
-  //   this.themeService.getSubscribedThemes().subscribe({
-  //     next: (data) => {
-  //       this.subscribedThemes = data;
-  //       console.log('Thèmes abonnés mis à jour :', this.subscribedThemes);
-  //     },
-  //     error: (err) => {
-  //       console.error('Erreur lors du chargement des thèmes abonnés :', err);
-  //     },
-  //   });
-  // }
 }

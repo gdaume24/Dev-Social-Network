@@ -21,7 +21,6 @@ export class ArticlesComponent {
   currentSort: string | null = null;
   sortAscending = true; // Indique si le tri est croissant ou décroissant
   subscription: any;
-  
 
   constructor(private router: Router) {}
 
@@ -31,7 +30,6 @@ export class ArticlesComponent {
         ...article,
         date: new Date(article.date), // Convertit la chaîne en objet Date
       }));
-      console.log(this.articles);
     });
   }
 
@@ -74,10 +72,9 @@ export class ArticlesComponent {
     });
   }
   goToArticleDetail(articleId: number) {
-    console.log('Navigating to article detail with ID:', articleId);
     this.router.navigate(['/article', articleId]);
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
-}
+  }
 }

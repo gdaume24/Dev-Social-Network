@@ -1,13 +1,11 @@
 package com.network.services;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.network.dto.CommentDto;
 import com.network.models.Article;
 import com.network.models.Comment;
 import com.network.models.Theme;
@@ -23,15 +21,13 @@ import com.network.repository.UserRepository;
 public class ArticleService {
     
     private ArticleRepository articleRepository;
-    private UserRepository userRepository;
     private CommentRepository commentRepository;
     private ThemeRepository themeRepository;
     private UserService userService;
 
-    public ArticleService(ArticleRepository articleRepository, UserRepository userRepository, CommentRepository commentRepository, ThemeRepository themeRepository, UserService userService) {
+    public ArticleService(ArticleRepository articleRepository, CommentRepository commentRepository, ThemeRepository themeRepository, UserService userService) {
         this.articleRepository = articleRepository;
         this.userService = userService;
-        this.userRepository = userRepository;
         this.commentRepository = commentRepository;
         this.themeRepository = themeRepository;
     }    

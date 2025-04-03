@@ -36,10 +36,12 @@ public class AuthController {
     }
 
     /**
-     * Endpoint for user registration.
-     * 
-     * @return ResponseEntity containing the jwt token response.
-     */
+    * Endpoint for user registration.
+    * @param signupRequest Les informations nécessaires pour l'inscription de l'utilisateur.
+    *                      Doit contenir un email valide, un nom d'utilisateur unique et un mot de passe.
+    * @return ResponseEntity containing the jwt token response.
+    * @throws adapted messages if the user or email is already used.
+    */
     @PostMapping("register")
     public ResponseEntity<AuthReponse> register(@RequestBody SignupRequest signupRequest) {
         if (authService.hasUserWithEmail(signupRequest.getEmail())) {
@@ -53,6 +55,9 @@ public class AuthController {
 
     /*
      * Endpoint for user connexion.
+     * @param loginRequest The login request containing the user's email and password.
+     * @throws a message if the email or password is incorrect.
+     * @return ResponseEntity containing the jwt token response.
      */
     @PostMapping("login")
     public ResponseEntity<AuthReponse> authenticateController(@RequestBody LoginRequest loginRequest) {
@@ -66,6 +71,7 @@ public class AuthController {
 
     /*
      * Endpoint to get the authenticated user's information from the jwt token.
+     * @return a userDto object containing the user's information.
      */
     @GetMapping("me")
     public ResponseEntity<UserDto> authenticatedUser() {

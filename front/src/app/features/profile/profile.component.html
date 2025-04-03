@@ -1,16 +1,28 @@
 <app-banneer-connected></app-banneer-connected>
 <div class="container">
-    <div class="above-line-container">
-        <p class="profil-page-label">Profil utilisateur</p>
-        <form [formGroup]="profileForm" (ngSubmit)="save()" class="profile-form">
-        <div class="profile-data">
-            <input type="text" formControlName="userName" [placeholder]="user?.userName">
-            <input type="email" formControlName="email" [placeholder]="user?.email">
-            <input type="password" formControlName="password" placeholder="Changer le mot de passe">
-        </div>
-        <button type="submit" class="save-button">Sauvegarder</button>
-        </form>
-    </div>
+  <div class="above-line-container">
+    <p class="profil-page-label">Profil utilisateur</p>
+    <form [formGroup]="profileForm" (ngSubmit)="save()" class="profile-form">
+      <div class="profile-data">
+        <input
+          type="text"
+          formControlName="userName"
+          [placeholder]="user?.userName"
+        />
+        <input
+          type="email"
+          formControlName="email"
+          [placeholder]="user?.email"
+        />
+        <input
+          type="text"
+          formControlName="password"
+          placeholder="Changer le mot de passe"
+        />
+      </div>
+      <button type="submit" class="save-button">Sauvegarder</button>
+    </form>
+  </div>
   <hr />
   <p class="subscriptions-label">Abonnements</p>
 
@@ -19,7 +31,9 @@
     <div class="theme-card" *ngFor="let theme of subscribedThemes">
       <p class="theme-name">{{ theme.name }}</p>
       <p class="theme-description">{{ theme.description }}</p>
-      <button class="unsubscribe-button" (click)="unsubscribe(theme.id)">Se désabonner</button>
+      <button class="unsubscribe-button" (click)="unsubscribe(theme.id)">
+        Se désabonner
+      </button>
     </div>
   </div>
 </div>

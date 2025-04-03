@@ -5,24 +5,31 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BanneerConnectedComponent } from '../../../../shared/banneer-connected/banneer-connected.component';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
-import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { CommentRequest } from '../../interface/commentRequest.interface';
 import { CommentsReponse } from '../../interface/commentsReponse.interface';
 
 @Component({
   selector: 'app-articledetail',
   imports: [
-    BanneerConnectedComponent, 
-    CommonModule, 
+    BanneerConnectedComponent,
+    CommonModule,
     MatIconModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   templateUrl: './articledetail.component.html',
-  styleUrl: './articledetail.component.css'
+  styleUrl: './articledetail.component.css',
 })
 export class ArticledetailComponent {
-  article? : Article;
+  article?: Article;
   articleSubscription: any;
   commentsSubscription: any;
   comments: CommentsReponse[] = [];
@@ -31,45 +38,48 @@ export class ArticledetailComponent {
   });
 
   constructor(
-    private route: ActivatedRoute, 
-    private articleService: ArticleService, 
-    private router: Router, 
+    private route: ActivatedRoute,
+    private articleService: ArticleService,
+    private router: Router
   ) {}
-  
+
   ngOnInit() {
     const articleId = this.route.snapshot.params['id'];
-    this.articleSubscription = this.articleService.getArticleById(articleId).subscribe((article) => {
-      this.article = article;
-    });
-    this.commentsSubscription = this.articleService.getComments(articleId).subscribe((comments) => {
-      console.log("AAAAAAAAAAAAAAA");
-      console.log(comments);
-      this.comments = comments;
-    });
+    this.articleSubscription = this.articleService
+      .getArticleById(articleId)
+      .subscribe((article) => {
+        this.article = article;
+      });
+    this.commentsSubscription = this.articleService
+      .getComments(articleId)
+      .subscribe((comments) => {
+        this.comments = comments;
+      });
   }
   navigateBack(): void {
     this.router.navigate(['/articles']);
   }
   postComment() {
-    console.log('Comment:', this.formGroup.value.comment); // Log the comment value
     const comment = this.formGroup.value.comment || ''; // Extract comment as string
-    this.articleService.postComment(this.article?.id?.toString() || '', comment).subscribe({
-      next: (response) => {
-        console.log('Comment posted successfully:', response);
-        // Réinitialiser le champ de texte
-        this.formGroup.reset();
-        
-        // Ajouter dynamiquement le commentaire à la liste
-        this.refreshComments();
-      }
-    })
+    this.articleService
+      .postComment(this.article?.id?.toString() || '', comment)
+      .subscribe({
+        next: (response) => {
+          // Réinitialiser le champ de texte
+          this.formGroup.reset();
+
+          // Ajouter dynamiquement le commentaire à la liste
+          this.refreshComments();
+        },
+      });
   }
   refreshComments() {
     const articleId = this.article?.id?.toString() || '';
-    this.commentsSubscription = this.articleService.getComments(articleId).subscribe((comments) => {
-      console.log('Comments refreshed:', comments);
-      this.comments = comments;
-    });
+    this.commentsSubscription = this.articleService
+      .getComments(articleId)
+      .subscribe((comments) => {
+        this.comments = comments;
+      });
   }
   ngOnDestroy() {
     if (this.articleSubscription) {

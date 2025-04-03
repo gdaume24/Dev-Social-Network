@@ -15,10 +15,7 @@ export class JwtInterceptor implements HttpInterceptor {
     const isExcluded = authExcludedEndpoints.some(
       (url) => request.url.endsWith(url) // Use endsWith to match the exact endpoint
     );
-    console.log('Is Excluded:', isExcluded);
-    console.log('Request URL:', request.url);
     if (isExcluded) {
-      console.log('********** Excluded **********');
       return next.handle(request); // Skip adding the Authorization header
     }
     if (isPlatformBrowser(this.platformId)) {

@@ -50,7 +50,6 @@ export class SignupComponent {
 
   registration() {
     if (this.form.invalid) {
-      console.log('Formulaire invalide', this.form.get('password')?.errors);
       return;
     }
     const registerRequest = this.form.value as RegisterRequest;
@@ -65,7 +64,6 @@ export class SignupComponent {
       },
       error: (error: HttpErrorResponse) => {
         if (error.error.message) {
-          console.log(error.error.message);
           this.errorMessage = error.error.message;
         }
       },
