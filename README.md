@@ -30,8 +30,8 @@ Lancement du back :
 
 Lancement du front :
 ```
-- cd front
-- npm i
-- ng serve
+cd front
+npm i
+ng serve
 ```
 Allez sur l'URL fournie dans le terminal et profitez du spectacle
