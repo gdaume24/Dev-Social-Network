@@ -37,4 +37,3 @@ ng serve
 ```
 
 Allez sur l'URL fournie dans le terminal et profitez du spectacle
-test
