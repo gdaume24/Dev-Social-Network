@@ -19,9 +19,9 @@ Lancement du back :
 
 - Créer un autre fichier .env dans le dossier back, en définissant les variables suivantes selon vos informations personnelles :
   ```
-  MYSQL_URL=votre_url
-  MYSQL_USERNAME=votre_username
-  MYSQL_PASSWORD=votre_password
+  MYSQL_URL=votre_url_de_base_de_données
+  MYSQL_USERNAME=votre_username_de_base_de_données
+  MYSQL_PASSWORD=votre_password_de_base_de_données
   SECURITY_JWT_SECRET_KEY=votre_jwt_secret_key
   SECURITY_JWT_EXPIRATION_TIME=votre_security_jwt_expiration_time
   ```
