@@ -17,7 +17,6 @@ public class Application {
 
 		Dotenv dotenv = Dotenv
 		.configure()
-		.directory("./back")
 		.load()
 		;
 		dotenv.entries().forEach(entry ->
