@@ -8,10 +8,10 @@
 		<version>3.4.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>demo</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>demo</name>
+	<groupId>com</groupId>
+	<artifactId>dev_network_community</artifactId>
+	<version>1.0.0</version>
+	<name>dev_network_community_api</name>
 	<description>Social newtork for developers</description>
 	<url/>
 	<licenses>
