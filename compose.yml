@@ -7,7 +7,7 @@ services:
       - "3307:3306"
     environment:
       MYSQL_DATABASE: network
-      MYSQL_USERNAME: ${MYSQL_USERNAME}
+      MYSQL_USER: ${MYSQL_USERNAME}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     restart: unless-stopped
@@ -15,26 +15,7 @@ services:
       - path: .env
     networks:
       - spring-demo
-  dsn-api:
-    container_name: dsn-api
-    build:
-      context: ./back
-      dockerfile: ../docker/backend/Dockerfile
-    env_file:
-      - path: .env
-    environment:
-      MYSQL_URL: ${MYSQL_URL}
-      MYSQL_USERNAME: ${MYSQL_USERNAME}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      SECURITY_JWT_SECRET_KEY: ${SECURITY_JWT_SECRET_KEY}
-      SECURITY_JWT_EXPIRATION_TIME: ${SECURITY_JWT_EXPIRATION_TIME}
-    ports:
-      - "8080:8080"
-    networks:
-      - spring-demo
-    depends_on:
-      - db
+
 networks:
   spring-demo:
     driver: bridge
