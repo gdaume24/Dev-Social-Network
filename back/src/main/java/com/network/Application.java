@@ -16,7 +16,7 @@ public class Application {
 	public static void main(String[] args) {
 
 		try {
-			Dotenv dotenv = Dotenv.configure().directory("./back").load();
+			Dotenv dotenv = Dotenv.configure().directory(".").load();
 			dotenv.entries().forEach(entry ->
 					System.setProperty(entry.getKey(), entry.getValue())
 			);

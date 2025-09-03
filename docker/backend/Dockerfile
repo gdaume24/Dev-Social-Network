@@ -6,17 +6,19 @@ COPY src ./src
 RUN mvn clean package -DskipTests
 
 FROM amazoncorretto:21
-ARG PROFILE=prod
-ENV ACTIVE_PROFILE=${PROFILE}
+ARG PROFILE=dev
 ARG APP_VERSION=1.0.0
 
 WORKDIR /app
 COPY --from=build /build/target/dev_network_community-*.jar /app/
 
-EXPOSE 8080
+EXPOSE 8088
 
-# Utilisez un ARG pour passer MYSQL_URL lors du build, puis définissez-le comme variable d'environnement
-
+ENV MYSQL_URL=jdbc:mysql://dsn_db:3306/network?allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=utf8
+ENV MYSQL_USERNAME=user
+ENV MYSQL_PASSWORD=123456
+ENV SECURITY_JWT_SECRET_KEY=mY5nR9pXvLw3qAeZtGcHjKbVfDx7zC1rT6yU8iWlO0oP4sQ2dE9aB3hJkM
+ENV SECURITY_JWT_EXPIRATION_TIME=864000000
 ENV ACTIVE_PROFILE=${PROFILE}
 ENV JAR_VERSION=${APP_VERSION}
 

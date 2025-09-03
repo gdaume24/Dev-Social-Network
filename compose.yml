@@ -1,7 +1,7 @@
 name: full_stack_project_oc
 services:
-  db:
-    container_name: full_stack_app_db
+  dsn_db:
+    container_name: dsn_db
     image: mysql:8.4.3
     ports:
       - "3307:3306"
@@ -15,6 +15,19 @@ services:
       - path: .env
     networks:
       - spring-demo
+  dsn_api:
+    container_name: dsn_api
+    build:
+      context: ./back
+      dockerfile: ../docker/backend/Dockerfile
+    image: dsn/dsn:1.0.0
+    ports:
+      - 8088:8088
+    networks:
+      - spring-demo
+    depends_on:
+      - dsn_db
+
 
 networks:
   spring-demo:
