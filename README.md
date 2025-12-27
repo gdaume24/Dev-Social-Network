@@ -1,3 +1,44 @@
+🚀 Projet Full Stack Java/Angular
+Une application robuste utilisant Java 23, Spring Boot et Angular 19.
+
+🛠 Tech Stack
+Frontend: Angular 19, Tailwind CSS
+
+Backend: Java 23, Spring Boot, Spring Security (JWT)
+
+Infrastructure: Docker, MySQL
+
+⚙️ Prérequis
+Avant de commencer, assurez-vous d'avoir :
+
+Java 23 & Maven
+
+Angular CLI 19
+
+Docker Desktop
+
+🏁 Lancement Rapide
+1. Base de données (Docker)
+Allez dans le dossier db/.
+
+Créez un fichier .env (basé sur .env.example).
+
+Lancez la commande : db/rebuild.bat (ou docker-compose up -d).
+
+2. Backend (Spring Boot)
+Configurez votre .env dans le dossier back/ (Variables JDBC & JWT).
+
+Lancez Application.java depuis votre IDE ou via ./mvnw spring-boot:run.
+
+3. Frontend (Angular)
+Bash
+
+cd front
+npm install
+ng serve
+Accédez à l'application sur : http://localhost:4200
+
+
 Pour lancer l'application en mode dev vous aurez besoin de Java 23, Angular cli 19 et Docker.
 
 Voici les étapes de lancement :
