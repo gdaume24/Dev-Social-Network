@@ -20,13 +20,26 @@ services:
     build:
       context: ./back
       dockerfile: ../docker/backend/Dockerfile
-    image: dsn/dsn:1.0.0
+    image: dsn/dsn_api:1.0.1
     ports:
       - 8088:8088
     networks:
       - spring-demo
     depends_on:
       - dsn_db
+
+  dsn_ui:
+    container_name: dsn_ui 
+    build:
+      context: ./front
+      dockerfile: ../docker/frontend/Dockerfile
+    image: dsn/dsn_ui:1.0.1
+    ports:
+      - 8080:80
+    depends_on:
+      - dsn_api
+    networks:
+      - spring-demo 
 
 
 networks:

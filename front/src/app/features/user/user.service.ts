@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = 'api/users';
+  private apiUrl = '${environment.apiUrl}/users';
 
   constructor(private httpClient: HttpClient) { }
 

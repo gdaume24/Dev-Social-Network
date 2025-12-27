@@ -25,7 +25,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.cors(cors -> cors.configurationSource(request -> {
             var corsConfiguration = new org.springframework.web.cors.CorsConfiguration();
-            corsConfiguration.setAllowedOrigins(List.of("http://localhost:4200")); // Autorise l'origine Angular
+            corsConfiguration.setAllowedOrigins(List.of("http://localhost:4200", "http://localhost:8080")); // Autorise l'origine Angular
             corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS")); // Méthodes autorisées
             corsConfiguration.setAllowedHeaders(List.of("Authorization", "Content-Type")); // En-têtes autorisés
             corsConfiguration.setExposedHeaders(List.of("Authorization")); // En-têtes exposés

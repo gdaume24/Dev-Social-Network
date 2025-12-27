@@ -10,7 +10,7 @@ import { AuthService } from '../../auth/services/auth.service';
 export class ThemeService {
   private httpClient = inject(HttpClient);
   private authService = inject(AuthService);
-  private pathService = 'api/themes';
+  private pathService = '${environment.apiUrl}/themes';
   themes = signal<Theme[]>([]);
   subscribedThemes = signal<Theme[]>([]);
 

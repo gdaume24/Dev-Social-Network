@@ -6,8 +6,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, MatIconModule, MatSidenavModule],
-  providers: [{provide: LOCALE_ID, useValue: 'fr' }],
+  providers: [{ provide: LOCALE_ID, useValue: 'fr' }],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {}
+export class AppComponent {
+}

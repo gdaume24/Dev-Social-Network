@@ -1,8 +1,6 @@
 package com.network.services;
 
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -48,11 +46,10 @@ public class UserService {
         }
 
     public User createUser(String email, String userName, String password) {
-        User user = User.builder()
-                .email(email)
-                .userName(userName)
-                .password(password)
-                .build();
+        User user = new User();
+        user.setEmail(email);
+        user.setUserName(userName);
+        user.setPassword(password);
         return userRepository.save(user);
     }
 

@@ -1,17 +1,11 @@
 package com.network.models;
 
-import lombok.*;
-import lombok.experimental.Accessors;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -25,13 +19,16 @@ import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.ToString;
+import lombok.experimental.Accessors;
 
-/**
- * User model
- */
+
 @Entity
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(chain = true)
@@ -62,21 +59,25 @@ public class User implements UserDetails{
     joinColumns = @JoinColumn(name = "user_id"),
     inverseJoinColumns = @JoinColumn(name = "theme_id")
   )
-  @Builder.Default
   @ToString.Exclude
   private List<Theme> themes = new ArrayList<>();
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
-    }
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+      return List.of();
+  }
 
-    @Override
-    public String getUsername() {
-        return email;
-    }
+  @Override
+  public String getUsername() {
+      return email;
+  }
 
-    public String getUserName() {
-        return userName;
-    }
+  public String getUserName() {
+      return userName;
+  }
+
+  @Override
+  public String getPassword() {
+      return password;
+  }
 }

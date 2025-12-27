@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, switchMap, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AuthService } from '../../auth/services/auth.service';
 import { ArticleRequest } from '../interface/articleRequest.interface';
 import { Article } from '../interface/article.interface';
@@ -11,9 +11,9 @@ import { CommentsReponse } from '../interface/commentsReponse.interface';
   providedIn: 'root',
 })
 export class ArticleService {
-  private apiUrl = 'api/articles'; // Remplacez par l'URL de votre API
+  private apiUrl = '${environment.apiUrl}/articles';
 
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(private http: HttpClient) {}
 
   all(): Observable<any> {
     return this.http.get<Article[]>(`${this.apiUrl}/subscribed`).pipe();

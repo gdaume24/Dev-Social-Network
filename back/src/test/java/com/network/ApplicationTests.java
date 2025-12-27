@@ -13,7 +13,6 @@ class ApplicationTests {
     static void loadEnv() {
         // Ne charger .env que si on est en local (par exemple profil "dev")
         String activeProfile = System.getenv("ACTIVE_PROFILE");
-        System.out.println("Active profileAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA: " + activeProfile);
         if ("dev".equalsIgnoreCase(activeProfile)) {
             try {
                 Dotenv dotenv = Dotenv.configure().load();
